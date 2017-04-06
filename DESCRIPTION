@@ -8,8 +8,8 @@ Depends: R (>= 3.3.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
-  bookdown
-  rmarkdown
+  bookdown,
+  rmarkdown,
   knitr
 LazyData: true
 RoxygenNote: 6.0.1
