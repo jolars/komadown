@@ -1,28 +1,18 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
 [![Travis-CI Build Status](https://travis-ci.org/jolars/rmdtemplates.svg?branch=master)](https://travis-ci.org/jolars/rmdtemplates)
 
-# rmdtemplates
+rmdtemplates
+============
 
 rmdtemplates is a collection of rmarkdown templates.
 
-## Installation
+Installation
+------------
 
 You can install rmdtemplates from github with:
 
-```{r gh-installation, eval = FALSE}
+``` r
 # install.packages("devtools")
 devtools::install_github("jolars/rmdtemplates")
 ```
