@@ -1,9 +1,9 @@
 Package: rmdtemplates
-Title: What the Package Does (one line, title case)
+Title: RMarkdown Templates for Lab Reports and More
 Version: 0.0.0.9000
 Authors@R: person("Johan", "Larsson", email = "johanlarsson@outlook.com",
                   role = c("aut", "cre"))
-Description: RMarkdown templates.
+Description: RMarkdown templates for lab reports and more.
 Depends: R (>= 3.3.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
