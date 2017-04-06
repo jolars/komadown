@@ -17,11 +17,9 @@
 #' @export
 lab_report <- function(...,
                        number_sections = TRUE,
-                       keep_tex = TRUE,
                        md_extensions = c("-autolink_bare_uris")){
   pdf_document_format(
     ...,
-    keep_tex = keep_tex,
     number_sections = number_sections,
     md_extensions = md_extensions,
     format = "lab_report",
