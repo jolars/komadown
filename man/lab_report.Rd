@@ -4,7 +4,7 @@
 \alias{lab_report}
 \title{Lab report template}
 \usage{
-lab_report(..., number_sections = TRUE, keep_tex = TRUE,
+lab_report(..., number_sections = TRUE,
   md_extensions = c("-autolink_bare_uris"))
 }
 \arguments{
