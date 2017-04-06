@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+fontsize: 11pt
+papersize: a4
+geometry: margin=3cm
+header-includes:
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \fancyhead[CO,CE]{}
+    - \fancyfoot[CO,CE]{}
+    - \fancyfoot[LE,RO]{\thepage}
+output: rmdtemplates::lab_report
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 4,
+  fig.height = 2.6,
+  fig.align = "center",
+  fig.pos = "!htbp",
+  dev.args = list(pointsize = 8)
+)
+
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
+options(digits = 2)
+
+library(lattice)
+library(latticeExtra)
+library(gridExtra)
+lattice.options(default.theme = list(fontsize = list(text = 8, points = 4)))
+```
+
+# Introduction
