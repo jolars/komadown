@@ -4,9 +4,9 @@
 \name{rmdtemplates-package}
 \alias{rmdtemplates}
 \alias{rmdtemplates-package}
-\title{rmdtemplates: What the Package Does (one line, title case)}
+\title{rmdtemplates: RMarkdown Templates for Lab Reports and More}
 \description{
-RMarkdown templates.
+RMarkdown templates for lab reports and more.
 }
 \seealso{
 Useful links:

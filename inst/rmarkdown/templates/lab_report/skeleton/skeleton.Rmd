@@ -3,12 +3,9 @@ title: "Untitled"
 fontsize: 11pt
 papersize: a4
 geometry: margin=3cm
-header-includes:
-    - \usepackage{fancyhdr}
-    - \pagestyle{fancy}
-    - \fancyhead[CO,CE]{}
-    - \fancyfoot[CO,CE]{}
-    - \fancyfoot[LE,RO]{\thepage}
+header:
+  - text: Text
+    pos: LO, LE
 output: rmdtemplates::lab_report
 ---
 

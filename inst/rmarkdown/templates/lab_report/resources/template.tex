@@ -1,9 +1,5 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
-$if(fontfamily)$
-\usepackage{$fontfamily$}
-$else$
-\usepackage{lmodern}
-$endif$
+
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
@@ -14,6 +10,15 @@ $endif$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage[lining]{libertine}
+  \usepackage{textcomp}
+  \usepackage[varqu,varl,scaled=0.95]{inconsolata}
+  \usepackage{amsthm}
+  \usepackage[osf,scale=0.97]{sourcesanspro}
+  \usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
+  \usepackage[scr=rsfso]{mathalfa}
+  \usepackage{bm}
+  \useosf
 $if(euro)$
   \usepackage{eurosym}
 $endif$
@@ -176,19 +181,29 @@ $else$
   \predate{}\postdate{}
 $endif$
 
+$if(header)$
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+$else$
+$if(footer)$
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+$endif$
+$endif$
+
+$for(header)$
+\fancyhead[$header.pos$]{$header.text$}
+$endfor$
+
+$for(footer)$
+\fancyfoot[$footer.pos$]{$footer.text$}
+$endfor$
+
+%\fancyfoot[CE,CO]{\thepage}
+
 $for(header-includes)$
 $header-includes$
 $endfor$
-
-\usepackage[lining]{libertine}
-\usepackage{textcomp}
-\usepackage[varqu,varl,scaled=0.95]{inconsolata}
-\usepackage{amsthm}
-\usepackage[osf,scale=0.97]{sourcesanspro}
-\usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
-\usepackage[scr=rsfso]{mathalfa}
-\usepackage{bm}
-\useosf
 
 \begin{document}
 
