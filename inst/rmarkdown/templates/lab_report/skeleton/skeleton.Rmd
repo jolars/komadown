@@ -1,8 +1,6 @@
 ---
 title: "Untitled"
 fontsize: 11pt
-papersize: a4
-geometry: margin=3cm
 header:
   - text: Text
     pos: LO, LE

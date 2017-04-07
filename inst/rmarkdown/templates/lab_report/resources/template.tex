@@ -1,4 +1,4 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$$else$a4,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 
 $if(linestretch)$
 \usepackage{setspace}
@@ -53,6 +53,8 @@ $endif$
 }{}
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$else$
+\usepackage[margin=3cm]{geometry}
 $endif$
 $if(lang)$
 \ifxetex
@@ -217,7 +219,6 @@ $endif$
 
 $for(include-before)$
 $include-before$
-
 $endfor$
 $if(toc)$
 {
