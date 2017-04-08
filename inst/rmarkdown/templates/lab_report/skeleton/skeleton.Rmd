@@ -1,6 +1,5 @@
 ---
 title: "Untitled"
-fontsize: 11pt
 header:
   - text: Text
     pos: LO, LE
@@ -11,8 +10,7 @@ output: rmdtemplates::lab_report
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.width = 4,
-  fig.height = 2.6,
-  fig.align = "center",
+  fig.height = 2.8,
   fig.pos = "!htbp",
   dev.args = list(pointsize = 8)
 )
@@ -24,7 +22,7 @@ options(digits = 2)
 library(lattice)
 library(latticeExtra)
 library(gridExtra)
-lattice.options(default.theme = list(fontsize = list(text = 8, points = 4)))
+lattice.options(default.theme = list(fontsize = list(text = 8, points = 6)))
 ```
 
 # Introduction
