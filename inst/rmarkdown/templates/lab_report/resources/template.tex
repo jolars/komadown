@@ -5,45 +5,21 @@ $if(linestretch)$
 \setstretch{$linestretch$}
 $endif$
 \usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage[lining]{libertine}
-  \usepackage{textcomp}
-  \usepackage[varqu,varl,scaled=0.95]{inconsolata}
-  \usepackage{amsthm}
-  \usepackage[osf,scale=0.97]{sourcesanspro}
-  \usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
-  \usepackage[scr=rsfso]{mathalfa}
-  \usepackage{bm}
-  \useosf
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[lining]{libertine}
+\usepackage{textcomp}
+\usepackage[varqu,varl,scaled=0.95]{inconsolata}
+\usepackage{amsthm}
+\usepackage[osf,scale=0.97]{sourcesanspro}
+\usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
+\usepackage[scr=rsfso]{mathalfa}
+\usepackage{bm}
+\useosf
 $if(euro)$
   \usepackage{eurosym}
 $endif$
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-    \usepackage{xltxtra,xunicode}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
-$if(mainfont)$
-    \setmainfont{$mainfont$}
-$endif$
-$if(sansfont)$
-    \setsansfont{$sansfont$}
-$endif$
-$if(monofont)$
-    \setmonofont[Mapping=tex-ansi]{$monofont$}
-$endif$
-$if(mathfont)$
-    \setmathfont(Digits,Latin,Greek){$mathfont$}
-$endif$
-\fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
@@ -57,12 +33,7 @@ $else$
 \usepackage[margin=3cm]{geometry}
 $endif$
 $if(lang)$
-\ifxetex
-  \usepackage{polyglossia}
-  \setmainlanguage{$mainlang$}
-\else
-  \usepackage[shorthands=off,$lang$]{babel}
-\fi
+\usepackage[shorthands=off,$lang$]{babel}
 $endif$
 $if(natbib)$
 \usepackage{natbib}
@@ -90,7 +61,6 @@ $endif$
 $if(tables)$
 \usepackage{longtable,booktabs}
 $endif$
-$if(graphics)$
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -100,14 +70,7 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-$endif$
-\ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\else
-  \usepackage[unicode=true]{hyperref}
-\fi
+\usepackage[unicode=true]{hyperref}
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={$author-meta$},
@@ -127,8 +90,6 @@ $if(strikeout)$
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 $if(numbersections)$
 \setcounter{secnumdepth}{5}
@@ -200,8 +161,6 @@ $endfor$
 $for(footer)$
 \fancyfoot[$footer.pos$]{$footer.text$}
 $endfor$
-
-%\fancyfoot[CE,CO]{\thepage}
 
 $for(header-includes)$
 $header-includes$
