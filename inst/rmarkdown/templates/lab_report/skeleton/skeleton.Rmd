@@ -1,19 +1,21 @@
 ---
 title: "Untitled"
 header:
-  pos: lo
-  first: text
-  next: \headmark
+  - pos: lo
+    next: \headmark
+  - pos: ro
+    next: name
+footer:
+  pos: co
+  next: \thepage
 output: rmdtemplates::lab_report
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,
-  fig.width = 2.4,
-  fig.height = 2.2,
-  fig.pos = "!htbp",
-  fig.align = "center",
+  fig.width = 2.3,
+  fig.height = 2.1,
   dev.args = list(pointsize = 7)
 )
 
