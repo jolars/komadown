@@ -1,13 +1,9 @@
 ---
 title: "Untitled"
 header:
-  - pos: lo
-    next: \headmark
   - pos: ro
-    next: name
-footer:
-  pos: co
-  next: \thepage
+    first: Text on first page
+    next: Text on subsequent pages
 output: rmdtemplates::lab_report
 ---
 
@@ -23,9 +19,6 @@ knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 options(digits = 2)
 
-library(lattice)
-library(latticeExtra)
-library(gridExtra)
 lattice.options(default.theme = list(fontsize = list(text = 7, points = 5)))
 ```
 
