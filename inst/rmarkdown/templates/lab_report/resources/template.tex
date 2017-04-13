@@ -8,15 +8,8 @@ $endif$
 $if(fontsize)$
   $fontsize$,
 $endif$
-$if(header)$
-  headinclude=true,
-$endif$
-$if(footer)$
-  footinclude=true,
-$endif$
-  headings=standardclasses,
-  footsepline=false,
-  headsepline=true
+  headsepline=$if(headsepline)$$headsepline$$else$true$endif$,
+  headings=$if(headings)$$headings$$else$standardclasses$endif$,$for(classoption)$$classoption$$sep$,$endfor$
 ]{scrartcl}
 
 $if(linestretch)$
@@ -26,15 +19,21 @@ $endif$
 
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
+
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+\usepapckage{amsmath,amssymb,amsthm}
+$else$
+% Set default font template based on libertine + inconsolata
 \usepackage[lining]{libertine}
 \usepackage{textcomp}
 \usepackage[varqu,varl,scaled=0.95]{inconsolata}
 \usepackage{amsthm}
-\usepackage[osf,scale=0.97]{sourcesanspro}
 \usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
 \usepackage[scr=rsfso]{mathalfa}
 \usepackage{bm}
 \useosf
+$endif$
 
 $if(euro)$
   \usepackage{eurosym}
@@ -47,10 +46,6 @@ $endif$
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$endif$
 
 \usepackage{hyperref}
 $if(colorlinks)$
@@ -165,10 +160,14 @@ $if(dir)$
 \newenvironment{LTR}{\beginL}{\endL}
 $endif$
 
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
 %%% Use protect on footnotes to avoid problems with footnotes in titles
 \let\rmarkdownfootnote\footnote%
 \def\footnote{\protect\rmarkdownfootnote}
-
 
 $if(title)$
 \title{$title$}
@@ -182,9 +181,19 @@ $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 $endif$
 
-\usepackage[automark]{scrlayer-scrpage}
+$if(date)$
+\date{$date$}
+$endif$
+
+\usepackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
+
+$if(automark)$
+\automark[subsection]{section}
 \clearmainofpairofpagestyles
+\lohead[]{\headmark}
+\cfoot[\pagemark]{\pagemark}
+$endif$
 
 $for(header)$
 \$header.pos$head[$header.first$]{$header.next$}
