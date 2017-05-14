@@ -11,7 +11,7 @@ test_format <- function(name, os_skip = NULL) {
     skip_on_cran()
 
     # skip on travis (which seems to currently fail)
-    #skip_on_travis()
+    skip_on_travis()
 
     # skip on os if requested
     if (!is.null(os_skip))
