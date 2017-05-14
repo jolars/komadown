@@ -1,8 +1,9 @@
 Package: komadown
 Title: Rmarkdown Templates for KOMA-Script Classes
 Version: 0.0.0.9000
-Authors@R: person("Johan", "Larsson", email = "johanlarsson@outlook.com",
-                  role = c("aut", "cre"))
+Authors@R:
+  person("Johan", "Larsson", email = "johanlarsson@outlook.com",
+         role = c("aut", "cre"))
 Description: RMarkdown templates based on the KOMA-script classes for LaTeX.
 Depends: R (>= 3.3.3)
 License: GPL-3 + file LICENSE
@@ -16,4 +17,6 @@ RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/jolars/komadown
 BugReports: https://github.com/jolars/komadown/issues
-Suggests: testthat
+Suggests:
+  testthat,
+  covr
