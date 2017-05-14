@@ -12,17 +12,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/jolars/rmdtemplates.svg?branch=master)](https://travis-ci.org/jolars/rmdtemplates)
+[![Travis-CI Build Status](https://travis-ci.org/jolars/rmdtemplates.svg?branch=master)](https://travis-ci.org/jolars/komadown)
 
-# rmdtemplates
+# komadown
 
-rmdtemplates is a collection of rmarkdown templates.
+komadown houses rmarkdown templates based on the KOMA-Script classes for
+use in pdf (LaTeX) output.
 
 ## Installation
 
-You can install rmdtemplates from github with:
+You can install komadown from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("jolars/rmdtemplates")
+devtools::install_github("jolars/komadown")
 ```

@@ -1,11 +1,11 @@
-Package: rmdtemplates
-Title: Rmarkdown Templates
+Package: komadown
+Title: Rmarkdown Templates for KOMA-Script Classes
 Version: 0.0.0.9000
 Authors@R: person("Johan", "Larsson", email = "johanlarsson@outlook.com",
                   role = c("aut", "cre"))
 Description: RMarkdown templates based on the KOMA-script classes for LaTeX.
 Depends: R (>= 3.3.3)
-License: MIT + file LICENSE
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 Imports:
   bookdown,
@@ -13,5 +13,5 @@ Imports:
   knitr
 LazyData: true
 RoxygenNote: 6.0.1
-URL: https://github.com/jolars/rmdtemplates
-BugReports: https://github.com/jolars/rmdtemplates/issues
+URL: https://github.com/jolars/komadown
+BugReports: https://github.com/jolars/komadown/issues

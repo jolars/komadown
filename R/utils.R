@@ -19,7 +19,6 @@ inherit_pdf_document <- function(...) {
 }
 
 pdf_document_format <- function(..., format, template, csl) {
-
   # base format
   fmt <- inherit_pdf_document(..., template = find_resource(format, template))
 

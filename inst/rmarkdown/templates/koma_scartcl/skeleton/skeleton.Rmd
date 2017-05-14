@@ -6,7 +6,7 @@ header:
   - pos: ro
     first: Text on first page
     next: Text on subsequent pages
-output: rmdtemplates::lab_report
+output: komadown::lab_report
 ---
 
 ```{r, include = FALSE}

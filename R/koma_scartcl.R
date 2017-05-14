@@ -1,6 +1,4 @@
-#' Lab report template
-#'
-#' A lab report template.
+#' Rmarkdown Template for koma-scartcl
 #'
 #' @inheritParams bookdown::pdf_document2
 #' @param automark Uses `scrlayer-scrpage` to include the subsection and section
@@ -13,20 +11,20 @@
 #' \dontrun{
 #' library(rmarkdown)
 #' library(bookdown)
-#' draft("MyArticle.Rmd", template = "lab_report", package = "rmdtemplates")
+#' draft("MyArticle.Rmd", template = "koma_scartcl", package = "rmdtemplates")
 #' }
 #' @export
-lab_report <- function(...,
-                       automark = TRUE,
-                       number_sections = TRUE,
-                       md_extensions = c("-autolink_bare_uris")){
+koma_scartcl <- function(...,
+                         number_sections = TRUE,
+                         md_extensions = c("-autolink_bare_uris")){
   pdf_document_format(
     ...,
-    automark = automark,
     number_sections = number_sections,
     md_extensions = md_extensions,
-    format = "lab_report",
+    format = "koma_scartcl",
     template = "template.tex",
     csl = "vancouver-brackets.csl"
   )
+
+
 }
