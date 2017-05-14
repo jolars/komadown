@@ -1,10 +1,15 @@
-find_file <- function(template, file) {
-  template <- system.file("rmarkdown", "templates", template, file,
-                          package = "rmdtemplates")
-  if (template == "") {
-    stop("Couldn't find template file ", template, "/", file, call. = FALSE)
-  }
+# These functions are (mostly) verbatim copies of functions from
+# the rticles package, which is copyrighted to RStudio and licensed under
+# GPL-3.
 
+find_file <- function(template, file) {
+  template <- system.file("rmarkdown",
+                          "templates",
+                          template,
+                          file,
+                          package = "komadown")
+  if (template == "")
+    stop("Couldn't find template file ", template, "/", file, call. = FALSE)
   template
 }
 

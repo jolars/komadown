@@ -1,17 +1,15 @@
 #' Rmarkdown Template for koma-scartcl
 #'
 #' @inheritParams bookdown::pdf_document2
-#' @param automark Uses `scrlayer-scrpage` to include the subsection and section
-#'   in the header (upper left).
-#' @param ... Arguments to \code{bookdown::pdf_document2}
+#' @param \dots Arguments to
 #'
-#' @return R Markdown output format to pass to \code{\link[rmarkdown:render]{render}}
+#' @return R Markdown output format to pass to [rmarkdown::render()].
 #' @examples
 #'
 #' \dontrun{
 #' library(rmarkdown)
 #' library(bookdown)
-#' draft("MyArticle.Rmd", template = "koma_scartcl", package = "rmdtemplates")
+#' draft("MyArticle.Rmd", template = "koma_scartcl", package = "komadown")
 #' }
 #' @export
 koma_scartcl <- function(...,
@@ -25,6 +23,4 @@ koma_scartcl <- function(...,
     template = "template.tex",
     csl = "vancouver-brackets.csl"
   )
-
-
 }

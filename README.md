@@ -1,18 +1,23 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/jolars/rmdtemplates.svg?branch=master)](https://travis-ci.org/jolars/rmdtemplates)
+[![Travis-CI Build Status](https://travis-ci.org/jolars/komadown.svg?branch=master)](https://travis-ci.org/jolars/komadown)
 
-rmdtemplates
-============
+komadown
+========
 
-rmdtemplates is a collection of rmarkdown templates.
+komadown provides rmarkdown templates based on the KOMA-Script classes for use in pdf (LaTeX) output.
 
 Installation
 ------------
 
-You can install rmdtemplates from github with:
+You can install komadown from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jolars/rmdtemplates")
+devtools::install_github("jolars/komadown")
 ```
+
+License
+-------
+
+See the [license](LICENSE).

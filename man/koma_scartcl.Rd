@@ -8,7 +8,7 @@ koma_scartcl(..., number_sections = TRUE,
   md_extensions = c("-autolink_bare_uris"))
 }
 \arguments{
-\item{...}{Arguments to \code{bookdown::pdf_document2}}
+\item{\dots}{Arguments to}
 
 \item{number_sections}{Whether to number section headers: if \code{TRUE},
 figure/table numbers will be of the form \code{X.i}, where \code{X} is the
@@ -21,12 +21,9 @@ section headers in this case.}
 specific output format function. For a function \code{foo2()}, its
 arguments are passed to \code{foo()}, e.g. \code{...} of
 \code{html_document2()} are passed to \code{rmarkdown::html_document()}.}
-
-\item{automark}{Uses `scrlayer-scrpage` to include the subsection and section
-in the header (upper left).}
 }
 \value{
-R Markdown output format to pass to \code{\link[rmarkdown:render]{render}}
+R Markdown output format to pass to \code{\link[rmarkdown:render]{rmarkdown::render()}}.
 }
 \description{
 Rmarkdown Template for koma-scartcl
@@ -36,6 +33,6 @@ Rmarkdown Template for koma-scartcl
 \dontrun{
 library(rmarkdown)
 library(bookdown)
-draft("MyArticle.Rmd", template = "koma_scartcl", package = "rmdtemplates")
+draft("MyArticle.Rmd", template = "koma_scartcl", package = "komadown")
 }
 }
