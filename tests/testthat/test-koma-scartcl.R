@@ -10,6 +10,9 @@ test_format <- function(name, os_skip = NULL) {
     # don't run on cran because pandoc is required
     skip_on_cran()
 
+    # skip on travis (which seems to currently fail)
+    #skip_on_travis()
+
     # skip on os if requested
     if (!is.null(os_skip))
       skip_on_os(os_skip)
