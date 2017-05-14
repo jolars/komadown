@@ -10,8 +10,6 @@ before_install:
   - tlmgr install newtx
   - tlmgr install mathalfa
   - tlmgr install bm
-  - tlmgr install basicmath
-
 
 repos:
   CRAN: https://cran.rstudio.com/
