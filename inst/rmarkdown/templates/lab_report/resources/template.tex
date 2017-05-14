@@ -86,6 +86,13 @@ $if(natbib)$
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
 
+% Captions
+\usepackage[format=plain,labelfont=bf,labelsep=period,font=small]{caption}
+\usepackage{floatrow}
+\usepackage{stfloats}
+\fnbelowfloat % puts footnotes below the bottom floats
+\floatsetup[table]{capposition=top}
+
 $if(biblatex)$
 \usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
 $if(biblatexoptions)$
@@ -136,8 +143,7 @@ $if(strikeout)$
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
 
-\providecommand{\tightlist}{%
-\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 $if(subparagraph)$
 $else$
