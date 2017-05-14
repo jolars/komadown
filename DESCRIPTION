@@ -1,9 +1,9 @@
 Package: rmdtemplates
-Title: RMarkdown Templates for Lab Reports and More
+Title: Rmarkdown Templates
 Version: 0.0.0.9000
 Authors@R: person("Johan", "Larsson", email = "johanlarsson@outlook.com",
                   role = c("aut", "cre"))
-Description: RMarkdown templates for lab reports and more.
+Description: RMarkdown templates based on the KOMA-script classes for LaTeX.
 Depends: R (>= 3.3.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
