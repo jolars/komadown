@@ -2,7 +2,19 @@ language: R
 sudo: false
 cache: packages
 pandoc_version: 1.19.2
+r_github_packages:
+  - jimhester/covr
 before_install:
-  - tlmgr install index
+  - tlmgr install libertine
+  - tlmgr install textcomp
+  - tlmgr install inconsolate
+  - tlmgr install newtxmath
+  - tlmgr install mathalfa
+  - tlmgr install bm
+  - tlmgr install basicmath
+
+
 repos:
   CRAN: https://cran.rstudio.com/
+after_success:
+  - Rscript -e 'covr::codecov()'
