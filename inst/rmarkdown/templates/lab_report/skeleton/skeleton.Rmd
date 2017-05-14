@@ -1,5 +1,7 @@
 ---
-title: "Untitled"
+title: Untitled
+author: Me
+automark: true
 header:
   - pos: ro
     first: Text on first page
@@ -12,14 +14,18 @@ knitr::opts_chunk$set(
   echo = FALSE,
   fig.width = 2.3,
   fig.height = 2.1,
-  dev.args = list(pointsize = 7)
+  dev = "cairo_pdf"
 )
 
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
-options(digits = 2)
+options(digits = 3)
 
-lattice.options(default.theme = list(fontsize = list(text = 7, points = 5)))
+# library(lattice)
+# library(latticeExtra)
+# lattice.options(default.theme = latticework::latticework_theme(
+#   fontsize = list(text = 7, points = 5)
+# ))
 ```
 
 # Introduction

@@ -4,11 +4,14 @@
 \alias{lab_report}
 \title{Lab report template}
 \usage{
-lab_report(..., number_sections = TRUE,
+lab_report(..., automark = TRUE, number_sections = TRUE,
   md_extensions = c("-autolink_bare_uris"))
 }
 \arguments{
 \item{...}{Arguments to \code{bookdown::pdf_document2}}
+
+\item{automark}{Uses `scrlayer-scrpage` to include the subsection and section
+in the header (upper left).}
 
 \item{number_sections}{Whether to number section headers: if \code{TRUE},
 figure/table numbers will be of the form \code{X.i}, where \code{X} is the
@@ -35,5 +38,4 @@ library(rmarkdown)
 library(bookdown)
 draft("MyArticle.Rmd", template = "lab_report", package = "rmdtemplates")
 }
-
 }
