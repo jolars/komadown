@@ -9,7 +9,6 @@ before_install:
   - tlmgr install inconsolata
   - tlmgr install newtx
   - tlmgr install mathalfa
-  - tlmgr install bm
 
 repos:
   CRAN: https://cran.rstudio.com/
