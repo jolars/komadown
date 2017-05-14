@@ -6,8 +6,7 @@ r_github_packages:
   - jimhester/covr
 before_install:
   - tlmgr install libertine
-  - tlmgr install textcomp
-  - tlmgr install inconsolate
+  - tlmgr install inconsolata
   - tlmgr install newtxmath
   - tlmgr install mathalfa
   - tlmgr install bm
