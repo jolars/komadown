@@ -7,7 +7,7 @@ r_github_packages:
 before_install:
   - tlmgr install libertine
   - tlmgr install inconsolata
-  - tlmgr install newtxmath
+  - tlmgr install newtx
   - tlmgr install mathalfa
   - tlmgr install bm
   - tlmgr install basicmath
