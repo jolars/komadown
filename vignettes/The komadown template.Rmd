@@ -1,0 +1,16 @@
+---
+title: "scartl"
+subtitle: "\latex articles with the komadown package"
+author: "Johan Larsson"
+date: "`r Sys.Date()`"
+output: komadown::koma_scartl()
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+This is meant as a showcase of some of the features from the `komadown::scartl()`
+template.
