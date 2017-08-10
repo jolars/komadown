@@ -38,4 +38,4 @@ test_format <- function(name, os_skip = NULL) {
   })
 }
 
-test_format("koma_scartcl")
+test_format("scartcl")

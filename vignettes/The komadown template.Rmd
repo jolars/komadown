@@ -3,7 +3,7 @@ title: "scartl"
 subtitle: "\latex articles with the komadown package"
 author: "Johan Larsson"
 date: "`r Sys.Date()`"
-output: komadown::koma_scartl()
+output: komadown::scartl()
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
