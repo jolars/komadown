@@ -9,17 +9,17 @@
 #' \dontrun{
 #' library(rmarkdown)
 #' library(bookdown)
-#' draft("MyArticle.Rmd", template = "koma_scartcl", package = "komadown")
+#' draft("MyArticle.Rmd", template = "scartcl", package = "komadown")
 #' }
 #' @export
-koma_scartcl <- function(...,
-                         number_sections = TRUE,
-                         md_extensions = c("-autolink_bare_uris")){
+scartcl <- function(...,
+                    number_sections = TRUE,
+                    md_extensions = c("-autolink_bare_uris")){
   pdf_document_format(
     ...,
     number_sections = number_sections,
     md_extensions = md_extensions,
-    format = "koma_scartcl",
+    format = "scartcl",
     template = "template.tex",
     csl = "vancouver-brackets.csl"
   )

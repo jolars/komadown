@@ -52,8 +52,8 @@ $endif$
 \usepackage[utf8]{inputenc}
 
 $if(fontfamily)$
-\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 \usepapckage{amsmath,amssymb,amsthm}
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
 % Set default font template based on libertine + inconsolata
 \usepackage[lining]{libertine}
