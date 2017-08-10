@@ -1,9 +1,13 @@
 ---
-title: "scartl"
-subtitle: "\latex articles with the komadown package"
-author: "Johan Larsson"
-date: "`r Sys.Date()`"
-output: komadown::scartl()
+title: scartcl
+subtitle: KOMA-script articles with komadown
+author: Me
+automark: true
+header:
+  - pos: ro
+    first: Text on first page
+    next: Text on subsequent pages
+output: komadown::scartcl
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -12,5 +16,5 @@ vignette: >
 
 # Introduction
 
-This is meant as a showcase of some of the features from the `komadown::scartl()`
+This is meant as a showcase of some of the features from the `komadown::scarctl()`
 template.
