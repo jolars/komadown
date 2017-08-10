@@ -52,14 +52,13 @@ $endif$
 \usepackage[utf8]{inputenc}
 
 $if(fontfamily)$
-\usepapckage{amsmath,amssymb,amsthm}
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
 % Set default font template based on libertine + inconsolata
 \usepackage[lining]{libertine}
 \usepackage{textcomp}
 \usepackage[varqu,varl,scaled=0.95]{inconsolata}
-\usepackage{amsthm}
+\usepackage{amsmath, amssymb, amsthm}
 \usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
 \usepackage[scr=rsfso]{mathalfa}
 \usepackage{bm}
