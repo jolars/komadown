@@ -51,6 +51,8 @@ $endif$
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
 
+\usepackage{amsmath,amssymb,amsthm}
+
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
@@ -58,7 +60,6 @@ $else$
 \usepackage[lining]{libertine}
 \usepackage{textcomp}
 \usepackage[varqu,varl,scaled=0.95]{inconsolata}
-\usepackage{amsmath, amssymb, amsthm}
 \usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
 \usepackage[scr=rsfso]{mathalfa}
 \usepackage{bm}
