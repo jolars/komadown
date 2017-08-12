@@ -142,9 +142,32 @@ for the caption package.
 
 The default settings (the ones above) produce captions that look like this:
 
-```{r, fig.cap = "A plot with the default caption settings.", fig.width = 3, fig.height = 2}
+```{r histogram, fig.cap = "A plot with the default caption settings.", fig.width = 3, fig.height = 2.2}
 hist(rnorm(10))
 ```
 
 
-# Design
+# Cross-references
+
+Cross-references are made available in markdown syntax via **bookdown**. The
+basic syntax is `\@ref(label)`. `label` will differ depending on context.
+
+Figures
+:    `label` will be `fig:id` where `id` is the label given the chunk
+the figure is produced by. Note that this requires the `fig.cap` argument
+to be set or else there won't be a `\figure` environment to attach the label
+to.
+
+Sections
+:    Add `{#id}` to the end of the section name and you can
+reference it with `\@ref(id)`.
+
+Equations
+:    Add `(\#eq:id)` inside the math environment and you will be able to
+refer to it by `\@ref(eq:id)`
+
+Theorems
+:    Add `label="id"` to the theorem chunk and you will be able to refer to
+it by `\@ref(prefix:id)` where prefix depends on the type of theorem. See
+[this table](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#tab:theorem-envs)
+for a description of the various prefixes.
