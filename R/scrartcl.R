@@ -1,4 +1,4 @@
-#' Rmarkdown Template for koma-scartcl
+#' Rmarkdown Template for koma-scrartcl
 #'
 #' @inheritParams bookdown::pdf_document2
 #' @param \dots Arguments to
@@ -9,17 +9,17 @@
 #' \dontrun{
 #' library(rmarkdown)
 #' library(bookdown)
-#' draft("MyArticle.Rmd", template = "scartcl", package = "komadown")
+#' draft("MyArticle.Rmd", template = "scrartcl", package = "komadown")
 #' }
 #' @export
-scartcl <- function(...,
-                    number_sections = TRUE,
-                    md_extensions = c("-autolink_bare_uris")){
+scrartcl <- function(...,
+                     number_sections = TRUE,
+                     md_extensions = c("-autolink_bare_uris")){
   pdf_document_format(
     ...,
     number_sections = number_sections,
     md_extensions = md_extensions,
-    format = "scartcl",
+    format = "scrartcl",
     template = "template.tex",
     csl = "vancouver-brackets.csl"
   )

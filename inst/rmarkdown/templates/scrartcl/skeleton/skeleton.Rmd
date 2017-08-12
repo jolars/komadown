@@ -1,23 +1,25 @@
 ---
-title: Untitled
-author: Me
-automark: true
+title: "Untitled"
+author: "Me"
+date: "`r Sys.Date()`"
+automark: yes
 header:
   - pos: ro
     first: Text on first page
     next: Text on subsequent pages
-output: komadown::scartcl
+output: komadown::scrartcl
 ---
 
 ```{r, include = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
 knitr::opts_chunk$set(
   echo = FALSE,
   fig.width = 2.3,
   fig.height = 2.1,
-  dev = "cairo_pdf"
+  dev = "pdf",
+  crop = FALSE
 )
-
-knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 options(digits = 3)
 ```

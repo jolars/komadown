@@ -40,7 +40,9 @@ $if(fontsize)$
   $fontsize$,
 $endif$
   headsepline=$if(headsepline)$$headsepline$$else$true$endif$,
-  headings=$if(headings)$$headings$$else$standardclasses$endif$,$for(classoption)$$classoption$$sep$,$endfor$
+  footsepline=$if(footsepline)$$footsepline$$else$false$endif$,
+  headings=$if(headings)$$headings$$else$standardclasses$endif$,
+  $for(classoption)$$classoption$$sep$,$endfor$%
 ]{scrartcl}
 
 $if(linestretch)$
@@ -49,33 +51,33 @@ $if(linestretch)$
 $endif$
 
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage[$if(inputenc)$$inputenc$$else$utf8$endif$]{inputenc}
 
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amssymb,amsthm}
 
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-% Set default font template based on libertine + inconsolata
-\usepackage[lining]{libertine}
+
+% set default font template based on newtx (times)
+\usepackage[osf]{newtxtext}
+\usepackage{newtxtt}
 \usepackage{textcomp}
-\usepackage[varqu,varl,scaled=0.95]{inconsolata}
-\usepackage[libertine,vvarbb,libaltvw,liby]{newtxmath}
-\usepackage[scr=rsfso]{mathalfa}
+\usepackage[vvarbb,varg]{newtxmath}
 \usepackage{bm}
-\useosf
 $endif$
 
 $if(euro)$
-  \usepackage{eurosym}
+\usepackage{eurosym}
 $endif$
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+  \usepackage{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 
 \usepackage{hyperref}
@@ -118,7 +120,12 @@ $if(natbib)$
 $endif$
 
 % Captions
-\usepackage[format=plain,labelfont=bf,labelsep=period,font=small]{caption}
+\usepackage[
+  format=$if(caption.format)$$caption.format$$else$plain$endif$,
+  labelfont=$if(caption.labelfont)$$caption.labelfont$$else$bf$endif$,
+  labelsep=$if(caption.labelsep)$$caption.labelsep$$else$period$endif$,
+  font=$if(caption.font)$$caption.font$$else$small$endif$
+]{caption}
 \usepackage{floatrow}
 \usepackage{stfloats}
 \fnbelowfloat % puts footnotes below the bottom floats

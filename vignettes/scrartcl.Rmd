@@ -1,0 +1,150 @@
+---
+title: "scrartcl"
+subtitle: "KOMA-script articles with komadown"
+author: "Johan Larsson"
+date: "`r Sys.Date()`"
+automark: yes
+colorlinks: yes
+header:
+  - pos: ro
+    first: ""
+    next: komadown
+caption:
+  - format: plain
+  - labelfont: bf
+  - labelsep: period
+  - font: small
+output: komadown::scrartcl
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 2.3,
+  fig.height = 2.1,
+  dev = "pdf",
+  dev.args = list(pointsize = 8),
+  crop = TRUE
+)
+
+options(digits = 3)
+```
+
+# Motivation
+
+The default latex template for [R Markdown](http://rmarkdown.rstudio.com/)
+and, by proxy, **pandoc**
+take liberties the original design of latex documents. The title
+page is compressed, margins are minimized, and first-line indentation
+is usurped by paragraph spacing. This makes sense for markdown documents that
+are intended for several output formats since consistency between those are
+important to uphold. From a typographical standpoint, however, the design
+leaves much to wish for. 
+
+I will not delve into the details of this, but I think it suffices to say
+that the design of latex documents have been wrought with care
+and---at least in my opinion---should only be meddled with if one knows what
+they are doing.
+
+This, coincidently, is the case with the
+[KOMA-Script bundle](https://komascript.de/), which is a 
+reimagining of the original latex classes article, book, letter, and book.
+In many ways, the KOMA-Script classes are straight-up upgrades to the original
+classes and add a significant deal of functionality to boot.
+
+All of this is (and will) not be a part of **komadown**, but the features that
+are include
+
+* automatic type area calculations using the option `DIV` and
+* automatic or manual headers and footers using yaml metadata.
+
+In addition to this, **komadown** also gives the user the option to 
+customize captions via the [caption](https://www.ctan.org/pkg/caption) package.
+
+**komadown** also includes the possibility for cross-references by locking
+in to the [bookdown](https://bookdown.org/) package.
+
+My only part in this is to provide a template and interface for **R** to make
+it easier for users to interface with these excellent packages. 
+
+# Installation
+Begin by installing **komadown** by running `install.packages("komadown")`.
+If you are running RStudio, this will set you up to begin a KOMA-Script
+article with **komadown**'s default template (which this document is based on)
+simply by going `File -> New File -> R Markdown` and picking the template. The
+code that makes this work is borrowed from
+[rticles](https://CRAN.R-project.org/package=rticles).
+
+Besides installing the package, the only other necessary step is to
+include
+
+```
+---
+output: komadown::scrartcl
+---
+```
+
+somewhere in the YAML metadata and you will be good to go.
+
+# Settings
+
+## Headers and footers
+
+Headers and footers can be specified via the following syntax.
+```
+---
+header:
+  - pos: r
+    first: ""
+    next: "KOMA-script articles with komadown"
+footers:
+  - pos: l
+    first: ""
+    next: 
+---
+```
+`pos` gives alignment of the header---one of `r`, `l`, and `c` for right, left,
+and center respectively. `first` is the text for the header or footer on the
+first page and `next` for the latter pages. Note that *none* of these arguments
+may be omitted.
+
+Additionally, the user can set
+```
+---
+automark: yes
+---
+```
+which will then create a running header displaying the current section in
+the left spot of the header (which is the setting used in this vignette).
+
+## Captions
+
+Captions can be customized using the following settings.
+```
+---
+caption:
+  - format: plain
+  - labelfont: bf
+  - labelsep: period
+  - font: small
+---
+```
+
+These should be self-explanatory; otherwise, the reader is referred to 
+the [documentation](http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/caption/caption-eng.pdf)
+for the caption package.
+
+The default settings (the ones above) produce captions that look like this:
+
+```{r, fig.cap = "A plot with the default caption settings.", fig.width = 3, fig.height = 2}
+hist(rnorm(10))
+```
+
+
+# Design

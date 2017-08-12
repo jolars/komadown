@@ -38,4 +38,4 @@ test_format <- function(name, os_skip = NULL) {
   })
 }
 
-test_format("scartcl")
+test_format("scrartcl")

@@ -4,9 +4,9 @@
 \name{komadown-package}
 \alias{komadown}
 \alias{komadown-package}
-\title{komadown: Rmarkdown Templates for KOMA-Script Classes}
+\title{komadown: R Markdown Templates for the KOMA-Script Classes}
 \description{
-RMarkdown templates based on the KOMA-script classes for LaTeX.
+R Markdown templates based on the KOMA-script classes for LaTeX.
 }
 \seealso{
 Useful links:
