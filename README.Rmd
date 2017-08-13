@@ -18,12 +18,12 @@ knitr::opts_chunk$set(
 
 # komadown
 
-komadown provides [rmarkdown](http://rmarkdown.rstudio.com/) templates for the
+komadown provides [R Markdown](http://rmarkdown.rstudio.com/) templates for the
 [KOMA-Script classes](https://komascript.de/) (currently only koma-scartcl).
 It is intended only for pdf (LaTeX) output.
 
 It wraps around [bookdown](https://github.com/rstudio/bookdown) to enable
-cross-referencing throughout.
+cross-referencing of figures, sections. theorems, and equations.
 
 ## Installation
 
