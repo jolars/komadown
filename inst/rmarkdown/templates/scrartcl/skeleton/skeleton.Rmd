@@ -1,12 +1,19 @@
 ---
-title: "Untitled"
-author: "Me"
+title: "scrartcl"
+subtitle: "KOMA-script articles with komadown"
+author: "Johan Larsson"
 date: "`r Sys.Date()`"
 automark: yes
+colorlinks: yes
 header:
   - pos: ro
-    first: Text on first page
-    next: Text on subsequent pages
+    first: ""
+    next: komadown
+caption:
+  - format: plain
+  - labelfont: bf
+  - labelsep: period
+  - font: small
 output: komadown::scrartcl
 ---
 
@@ -15,9 +22,8 @@ knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 knitr::opts_chunk$set(
   echo = FALSE,
-  fig.width = 2.3,
-  fig.height = 2.1,
   dev = "pdf",
+  dev.args = list(pointsize = 8),
   crop = FALSE
 )
 
