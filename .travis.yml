@@ -6,7 +6,7 @@ r_github_packages:
   - jimhester/covr
 
 before_install:
-  - tlmgr install tex-gyre fontaxes
+  - tlmgr install tex-gyre fontaxes newtxtt
 
 repos:
   CRAN: https://cran.rstudio.com/
