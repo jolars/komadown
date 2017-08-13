@@ -30,9 +30,7 @@
 % POSSIBILITY OF SUCH DAMAGE.
 
 \documentclass[
-$if(DIV)$
-  DIV=$DIV$,
-$endif$
+  DIV=$if(DIV)$$DIV$$else$default$endif$,
 $if(papersize)$
   $papersize$paper,
 $endif$
@@ -41,35 +39,126 @@ $if(fontsize)$
 $endif$
   headsepline=$if(headsepline)$$headsepline$$else$true$endif$,
   footsepline=$if(footsepline)$$footsepline$$else$false$endif$,
-  headings=$if(headings)$$headings$$else$standardclasses$endif$,
+  headings=$if(headings)$$headings$$else$big$endif$,
   $for(classoption)$$classoption$$sep$,$endfor$%
 ]{scrartcl}
+
+\usepackage{ifxetex,ifluatex}
 
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
 
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[$if(inputenc)$$inputenc$$else$utf8$endif$]{inputenc}
 
-\usepackage{amssymb,amsthm}
-
 $if(fontfamily)$
+\usepackage{amssymb,amsmath}
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
+\usepackage{amsthm}
+$if(fontpack-erewhon)$
+% erewhon + cabin
+\usepackage[p,osf,scaled=.98,space]{erewhon}
+\usepackage{textcomp}
+\usepackage[varqu,varl]{inconsolata}
+\usepackage[type1,scaled=.95]{cabin}
+\usepackage[utopia,vvarbb]{newtxmath}
+\usepackage{bm}
+$else$
+$if(fontpack-charter)$
+% charter + cabin
+\usepackage[scaled=.98,sups,osf]{XCharter}
+\usepackage{textcomp}
+\usepackage[scaled=1.04,varqu,varl]{inconsolata}
+\usepackage[type1]{cabin}
+\usepackage[charter,vvarbb,scaled=1.07]{newtxmath}
+\usepackage[cal=boondoxo]{mathalfa}
 
-% set default font template based on newtx (times)
+\linespread{1.04}
+$else$
+$if(fontpack-libertine)$
+% libertine + biolinum
+\usepackage[lining,semibold]{libertine}
+\usepackage{textcomp}
+\usepackage[varqu,varl]{inconsolata}
+\usepackage[libertine,vvarbb]{newtxmath}
+\usepackage[scr=rsfso]{mathalfa}
+\usepackage{bm}
+\useosf
+$else$
+% times + helvetica (default)
 \usepackage[osf]{newtxtext}
 \usepackage{newtxtt}
 \usepackage{textcomp}
 \usepackage[vvarbb,varg]{newtxmath}
 \usepackage{bm}
 $endif$
+$endif$
+$endif$
+$endif$
 
 $if(euro)$
 \usepackage{eurosym}
 $endif$
+
+\else % if luatex or xelatex
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$else$
+\usepackage{lmodern}
+$endif$
+\usepackage{amssymb,amsthm}
+
+$if(mathspec)$
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{unicode-math}
+  \fi
+$else$
+  \usepackage{unicode-math}
+$endif$
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+$for(fontfamilies)$
+  \newfontfamily{$fontfamilies.name$}[$fontfamilies.options$]{$fontfamilies.font$}
+$endfor$
+$if(euro)$
+  \newcommand{\euro}{€}
+$endif$
+$if(mainfont)$
+    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(sansfont)$
+    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+$endif$
+$if(mathfont)$
+$if(mathspec)$
+  \ifxetex
+    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \else
+    \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \fi
+$else$
+  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+$endif$
+$if(CJKmainfont)$
+    \usepackage{xeCJK}
+    \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+$endif$
+\fi
+
+% KOMA options
+$for(KOMAoptions)$
+\KOMAoptions{$KOMAoptions$}
+$endfor$
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -107,16 +196,20 @@ $endif$
 }
 \urlstyle{same}  % don't use monospace font for urls
 
+% Language options (babel/polyglossia)
 $if(lang)$
-\usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
 $if(babel-newcommands)$
-$babel-newcommands$
+  $babel-newcommands$
 $endif$
-$endif$
-
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+$for(polyglossia-otherlangs)$
+  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+$endfor$
+\fi
 $endif$
 
 % Captions
@@ -197,11 +290,21 @@ $else$
 $endif$
 
 $if(dir)$
-\TeXXeTstate=1
-\newcommand{\RL}[1]{\beginR #1\endR}
-\newcommand{\LR}[1]{\beginL #1\endL}
-\newenvironment{RTL}{\beginR}{\endR}
-\newenvironment{LTR}{\beginL}{\endL}
+\ifxetex
+  % load bidi as late as possible as it modifies e.g. graphicx
+  $if(latex-dir-rtl)$
+  \usepackage[RTLdocument]{bidi}
+  $else$
+  \usepackage{bidi}
+  $endif$
+\fi
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \TeXXeTstate=1
+  \newcommand{\RL}[1]{\beginR #1\endR}
+  \newcommand{\LR}[1]{\beginL #1\endL}
+  \newenvironment{RTL}{\beginR}{\endR}
+  \newenvironment{LTR}{\beginL}{\endL}
+\fi
 $endif$
 
 % set default figure placement to htbp
@@ -209,7 +312,7 @@ $endif$
 \def\fps@figure{htbp}
 \makeatother
 
-%%% Use protect on footnotes to avoid problems with footnotes in titles
+% Use protect on footnotes to avoid problems with footnotes in titles
 \let\rmarkdownfootnote\footnote%
 \def\footnote{\protect\rmarkdownfootnote}
 
@@ -250,6 +353,19 @@ $endfor$
 $for(header-includes)$
 $header-includes$
 $endfor$
+
+% KOMA font options
+$for(setkomafont)$
+\setkomafont{$setkomafont.element$}{$setkomafont.commands$}
+$endfor$
+
+$for(addtokomafont)$
+\addtokomafont{$addtokomafont.element$}{$addtokomafont.commands$}
+$endfor$
+
+$if(recalctypearea)$
+\recalctypearea
+$endif$
 
 \begin{document}
 $if(title)$
