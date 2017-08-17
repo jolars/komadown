@@ -1,5 +1,11 @@
 #' Rmarkdown Template for koma-scrartcl
 #'
+#' This is an interface to the KOMA-Script class scrartcl that acts as an
+#' alternative to the article class in LaTeX. Most of added functionality
+#' is documented in the *scrartcl* vignette
+#' (`vignette("scrartcl", "komadown")`) and is accessed via the YAML metadata
+#' block of the R Markdown file.
+#'
 #' @inheritParams bookdown::pdf_document2
 #' @param \dots Arguments to
 #'

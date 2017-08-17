@@ -26,7 +26,11 @@ arguments are passed to \code{foo()}, e.g. \code{...} of
 R Markdown output format to pass to \code{\link[rmarkdown:render]{rmarkdown::render()}}.
 }
 \description{
-Rmarkdown Template for koma-scrartcl
+This is an interface to the KOMA-Script class scrartcl that acts as an
+alternative to the article class in LaTeX. Most of added functionality
+is documented in the \emph{scrartcl} vignette
+(\code{vignette("scrartcl", "komadown")}) and is accessed via the YAML metadata
+block of the R Markdown file.
 }
 \examples{
 
