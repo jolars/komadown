@@ -1,5 +1,7 @@
 % This template has been adapted from https://github.com/jgm/pandoc-templates
-% that comes attached with the following copyright notice.
+% that comes attached with the following copyright notice. It also includes
+% segments from the R Markdown template that in turn is based on the pandoc
+% template.
 %
 % Copyright (c) 2014--2017, John MacFarlane
 %
@@ -30,16 +32,12 @@
 % POSSIBILITY OF SUCH DAMAGE.
 
 \documentclass[
-  DIV=$if(DIV)$$DIV$$else$default$endif$,
 $if(papersize)$
   $papersize$paper,
 $endif$
 $if(fontsize)$
   $fontsize$,
 $endif$
-  headsepline=$if(headsepline)$$headsepline$$else$true$endif$,
-  footsepline=$if(footsepline)$$footsepline$$else$false$endif$,
-  headings=$if(headings)$$headings$$else$big$endif$,
   $for(classoption)$$classoption$$sep$,$endfor$%
 ]{scrartcl}
 
@@ -77,25 +75,29 @@ $if(fontpack-charter)$
 \usepackage[type1]{cabin}
 \usepackage[charter,vvarbb,scaled=1.07]{newtxmath}
 \usepackage[cal=boondoxo]{mathalfa}
-
 \linespread{1.04}
 $else$
 $if(fontpack-libertine)$
 % libertine + biolinum
-\usepackage[lining,semibold]{libertine}
+\usepackage[lining]{libertine}
 \usepackage{textcomp}
 \usepackage[varqu,varl]{inconsolata}
-\usepackage[libertine,vvarbb]{newtxmath}
+\usepackage[libertine,libaltvw,liby,vvarbb]{newtxmath}
 \usepackage[scr=rsfso]{mathalfa}
 \usepackage{bm}
 \useosf
 $else$
-% times + helvetica (default)
+$if(fontpack-times)$
+% times + helvetica
 \usepackage[osf]{newtxtext}
 \usepackage{newtxtt}
 \usepackage{textcomp}
 \usepackage[vvarbb,varg]{newtxmath}
 \usepackage{bm}
+$else$
+\usepackage{textcomp}
+\usepackage{lmodern}
+$endif$
 $endif$
 $endif$
 $endif$
@@ -114,59 +116,54 @@ $endif$
 \usepackage{amssymb,amsthm}
 
 $if(mathspec)$
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{unicode-math}
-  \fi
+\ifxetex
+\usepackage{mathspec}
+\else
+\usepackage{unicode-math}
+\fi
 $else$
-  \usepackage{unicode-math}
+\usepackage{unicode-math}
 $endif$
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 $for(fontfamilies)$
-  \newfontfamily{$fontfamilies.name$}[$fontfamilies.options$]{$fontfamilies.font$}
+\newfontfamily{$fontfamilies.name$}[$fontfamilies.options$]{$fontfamilies.font$}
 $endfor$
 $if(euro)$
-  \newcommand{\euro}{€}
+\newcommand{\euro}{€}
 $endif$
 $if(mainfont)$
-    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+\setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
 $endif$
 $if(sansfont)$
-    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+\setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
 $endif$
 $if(monofont)$
-    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+\setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
 $endif$
 $if(mathfont)$
 $if(mathspec)$
-  \ifxetex
-    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
-  \else
-    \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
-  \fi
+\ifxetex
+\setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+\else
+\setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+\fi
 $else$
-  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+\setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
 $endif$
 $endif$
 $if(CJKmainfont)$
-    \usepackage{xeCJK}
-    \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+\usepackage{xeCJK}
+\setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
 $endif$
 \fi
-
-% KOMA options
-$for(KOMAoptions)$
-\KOMAoptions{$KOMAoptions$}
-$endfor$
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-  \usepackage{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 
 \usepackage{hyperref}
@@ -194,31 +191,32 @@ $else$
 $endif$
   breaklinks=true
 }
-\urlstyle{same}  % don't use monospace font for urls
+\urlstyle{same}
 
 % Language options (babel/polyglossia)
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+\usepackage[
+  shorthands=off,
+  $for(babel-otherlangs)$$babel-otherlangs$,$endfor$%
+  main=$babel-lang$
+]{babel}
 $if(babel-newcommands)$
-  $babel-newcommands$
+$babel-newcommands$
 $endif$
 \else
-  \usepackage{polyglossia}
-  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+\usepackage{polyglossia}
+\setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
 $for(polyglossia-otherlangs)$
-  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+\setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
 $endfor$
 \fi
 $endif$
 
 % Captions
-\usepackage[
-  format=$if(caption.format)$$caption.format$$else$plain$endif$,
-  labelfont=$if(caption.labelfont)$$caption.labelfont$$else$bf$endif$,
-  labelsep=$if(caption.labelsep)$$caption.labelsep$$else$period$endif$,
-  font=$if(caption.font)$$caption.font$$else$small$endif$
-]{caption}
+\usepackage[$for(caption)$$caption$$sep$,$endfor$]{caption}
+
+% Floats
 \usepackage{floatrow}
 \usepackage{stfloats}
 \fnbelowfloat % puts footnotes below the bottom floats
@@ -291,19 +289,19 @@ $endif$
 
 $if(dir)$
 \ifxetex
-  % load bidi as late as possible as it modifies e.g. graphicx
-  $if(latex-dir-rtl)$
-  \usepackage[RTLdocument]{bidi}
-  $else$
-  \usepackage{bidi}
-  $endif$
+% load bidi as late as possible as it modifies e.g. graphicx
+$if(latex-dir-rtl)$
+\usepackage[RTLdocument]{bidi}
+$else$
+\usepackage{bidi}
+$endif$
 \fi
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \TeXXeTstate=1
-  \newcommand{\RL}[1]{\beginR #1\endR}
-  \newcommand{\LR}[1]{\beginL #1\endL}
-  \newenvironment{RTL}{\beginR}{\endR}
-  \newenvironment{LTR}{\beginL}{\endL}
+\TeXXeTstate=1
+\newcommand{\RL}[1]{\beginR #1\endR}
+\newcommand{\LR}[1]{\beginL #1\endL}
+\newenvironment{RTL}{\beginR}{\endR}
+\newenvironment{LTR}{\beginL}{\endL}
 \fi
 $endif$
 
@@ -324,14 +322,27 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 
-$if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
+% Subfigs
+\usepackage{subfig}
+
+% Authors
+\usepackage[noblocks]{authblk}
+\renewcommand\Affilfont{$if(affilfont)$$affilfont$$else$\itshape\small$endif$}
+\renewcommand\Authfont{$if(authfont)$$authfont$$endif$}
+
+$for(author)$
+\author[$author.id$]{$author.name$}
+$endfor$
+
+$for(affil)$
+\affil[$affil.id$]{$affil.name$}
+$endfor$
 
 $if(date)$
 \date{$date$}
 $endif$
 
+% Headers and footers
 \usepackage{scrlayer-scrpage}
 \pagestyle{scrheadings}
 
@@ -350,10 +361,6 @@ $for(footer)$
 \$footer.pos$foot[$footer.first$]{$footer.next$}
 $endfor$
 
-$for(header-includes)$
-$header-includes$
-$endfor$
-
 % KOMA font options
 $for(setkomafont)$
 \setkomafont{$setkomafont.element$}{$setkomafont.commands$}
@@ -363,9 +370,14 @@ $for(addtokomafont)$
 \addtokomafont{$addtokomafont.element$}{$addtokomafont.commands$}
 $endfor$
 
-$if(recalctypearea)$
-\recalctypearea
-$endif$
+% KOMA options
+$for(KOMAoptions)$
+\KOMAoptions{$KOMAoptions$}
+$endfor$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
 
 \begin{document}
 $if(title)$
@@ -382,13 +394,12 @@ $for(include-before)$
 $include-before$
 $endfor$
 
-$if(toc)${
+$if(toc)$
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-}
 $endif$
 
 $if(lot)$
@@ -411,16 +422,13 @@ $else$
 $endif$
 $endif$
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
-
 $endif$
 $endif$
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
 $endif$
 $for(include-after)$
 $include-after$
-
 $endfor$
 
 \end{document}

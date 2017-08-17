@@ -1,19 +1,29 @@
 ---
 title: "scrartcl"
 subtitle: "KOMA-script articles with komadown"
-author: "Johan Larsson"
+author:
+  - name: "Johan Larsson"
 date: "`r Sys.Date()`"
 automark: yes
 colorlinks: yes
+fontpack-libertine: yes
+classoption:
+  - DIV=calc
+  - headsepline=true
 header:
   - pos: ro
-    first: ""
-    next: komadown
+    first: "Text on first page."
+    next: "Text on subsequent pages."
 caption:
-  - format: plain
-  - labelfont: bf
-  - labelsep: period
-  - font: small
+  - labelfont=bf
+  - labelsep=period
+  - font=small
+setkomafont:
+  - element: descriptionlabel
+    commands: \normalfont\scshape\bfseries
+KOMAoptions:
+  - headings=standardclasses
+  - DIV=last
 output: komadown::scrartcl
 ---
 
