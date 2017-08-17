@@ -27,17 +27,11 @@ cross-referencing of figures, sections. theorems, and equations.
 
 ## Installation
 
-You can install komadown from github with:
+You can install komadown from github with
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("jolars/komadown")
-```
-
-You will also need
-
-```{r, eval = FALSE}
-install.packages(c("rmarkdown", "bookdown"))
 ```
 
 ## License
