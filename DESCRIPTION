@@ -4,7 +4,8 @@ Version: 0.0.0.9000
 Authors@R:
   person("Johan", "Larsson", email = "johanlarsson@outlook.com",
          role = c("aut", "cre"))
-Description: R Markdown templates based on the KOMA-script classes for LaTeX.
+Description: R Markdown templates based on the KOMA-Script classes for LaTeX.
+  Also offers cross-referencing via the bookdown package.
 Depends: R (>= 3.3.3)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
