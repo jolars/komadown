@@ -6,7 +6,10 @@ r_github_packages:
   - jimhester/covr
 
 before_install:
-  - tlmgr install tex-gyre fontaxes newtxtt sttools preprint mweights libertine mathalfa
+  - tlmgr install fontaxes sttools preprint mweights libertine mathalfa
+
+r_build_args:
+  - "--compact-vignettes=both"
 
 repos:
   CRAN: https://cran.rstudio.com/

@@ -10,6 +10,9 @@ init:
 install:
   ps: Bootstrap
 
+R_BUILD_ARGS:
+  - "--compact-vignettes=both"
+
 cache:
   - C:\RLibrary
 
