@@ -1,7 +1,8 @@
 ## Test environments
-* local OS X install, R 3.4.1
-* ubuntu 12.04 (on travis-ci), R 3.4.1
-* win-builder (devel and release)
+* local Windows 10 Pro, R 3.4.1
+* Windows Server 2012 R2 x64 (build 9600), R 3.4.1
+* ubuntu 12.04 (on travis-ci), R 3.3.3, 3.4.1, devel
+* win-builder (devel r73101 and 3.4.1)
 
 ## R CMD check results
 
@@ -12,12 +13,3 @@
 ## Reverse dependencies
 
 This is a new release, so there are no reverse dependencies.
-
----
-
-* I have run R CMD check on the NUMBER downstream dependencies.
-  (Summary at ...). 
-  
-* FAILURE SUMMARY
-
-* All revdep maintainers were notified of the release on RELEASE DATE.
