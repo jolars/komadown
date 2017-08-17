@@ -1,20 +1,28 @@
 ---
 title: "scrartcl"
 subtitle: "KOMA-script articles with komadown"
-author: "Johan Larsson"
+author:
+  - name: "Johan Larsson"
 date: "`r Sys.Date()`"
 automark: yes
 colorlinks: yes
-recalctypearea: yes
+fontpack-libertine: yes
+classoption:
+  - DIV=calc
+  - headsepline=true
 header:
   - pos: ro
-    first: ""
     next: komadown
 caption:
-  - format: plain
-  - labelfont: bf
-  - labelsep: period
-  - font: small
+  - labelfont=bf
+  - labelsep=period
+  - font=small
+setkomafont:
+  - element: descriptionlabel
+    commands: \normalfont\scshape\bfseries
+KOMAoptions:
+  - headings=standardclasses
+  - DIV=last
 bibliography: komadown.bib
 output: komadown::scrartcl
 vignette: >
@@ -40,45 +48,53 @@ options(digits = 3)
 
 # Motivation
 
-The default \LaTeX template for [R Markdown](http://rmarkdown.rstudio.com/) and,
-by proxy, **pandoc** take liberties with the original design of latex documents.
+The default \LaTeX\ template for [R Markdown](http://rmarkdown.rstudio.com/) and,
+by proxy, **pandoc** take liberties with the original design of \LaTeX\ documents.
 The title page is compressed, margins are minimized, and first-line indentation 
 is usurped by paragraph spacing. This makes sense for markdown documents that 
 are intended for several output formats since consistency between those are 
 important to uphold. From a typographical standpoint, however, the design leaves
-much to wish for.
+much to desire.
 
-I will not delve into the details of this, but I think it suffices to say
-that the design of \LaTeX documents have been wrought with care
-and---at least in my opinion---should only be meddled with if one knows what
+Without delving into the details of this, I think it suffices to say
+that the design of \LaTeX\ documents have been wrought with care
+and should only be meddled with if one knows what
 they are doing.
 
 This, coincidently, is the case with the
 [KOMA-Script bundle](https://komascript.de/), which is a 
-reimagining of the original \LaTeX classes article, book, letter, and book.
-In many ways, the KOMA-Script classes are straight-up upgrades to the original
-classes and add a significant deal of functionality to boot.
+reimagining of the original \LaTeX\ classes article, book, letter, and book.
+In many ways, the KOMA-Script classes are incontrovertible upgrades to the
+original classes, adding a significant deal of functionality to boot. 
 
-All of this is (and will) not be a part of **komadown**, but the features that
-are include
+In addition to this, **komadown** pulls in a small set of other packages
+to handle the different needs that KOMA-Script does not cover. All in all,
+the package interface introduces
 
-* automatic type area calculations using the option `DIV` and
-* automatic or manual headers and footers using yaml metadata.
+* an interface to `\KOMAoptions`, which makes the majority of KOMA-Script
+accessible to the user,
+* automatic or manual headers and footers using yaml metadata,
+* caption customization via the **caption** package,
+* author and affiliation setups via the **authblk** package, and
+* font combinations with excellent support for math (mostly using the 
+**newtx** package).
 
-In addition to this, **komadown** also gives the user the option to 
-customize captions via the [caption](https://www.ctan.org/pkg/caption) package
-and cross-references in R Markdown by locking
-in to the [bookdown](https://bookdown.org/) package.
+In addition to this, **komadown** also leans on the
+[bookdown](https://bookdown.org/) package to provide support for
+cross-references of tables, figures, theorems, sections, and equations in
+R Markdown syntax.
 
-My only part in this is to provide a template and interface for **R** to make
-it easier for users to interface with these excellent packages.
+My minor role in this is to provide a \LaTeX\ template for **pandoc** and
+interface for **R** to make it easier for R users to draw on the power of
+KOMA-Script (and friends).
 
 # Installation
-Begin by installing **komadown** by running `install.packages("komadown")`.
+
+Install **komadown** by running `install.packages("komadown")`.
 If you are running RStudio, this will set you up to begin a KOMA-Script
 article with **komadown**'s default template (which this document is based on)
-simply by going `File -> New File -> R Markdown` and picking the template. The
-code that makes this work is borrowed from
+simply by going `File -> New File -> R Markdown` and picking the *scrartcl*
+template. The code that makes this work is borrowed from
 [rticles](https://CRAN.R-project.org/package=rticles).
 
 Besides installing the package, the only other necessary step is to
@@ -88,41 +104,62 @@ include
 output: komadown::scrartcl
 ---
 ```
-somewhere in the YAML metadata. This will eventually call
-`bookdown::pdf_document2()` and \LaTeX a `.tex` document to produce
-`PDF` output.
+somewhere in the metadata. This will eventually call
+`pdf_document2()` from **bookdown** and then \LaTeX\ a `.tex` document,
+producing `PDF` output.
 
 # Settings
 
-## Type area calculations
-
-One of the strengths of KOMA-Script is its facilities for calculating
-type-area sizes intelligently based on the current font settings. 
-Larger fonts need more space to reach an adequate number of words per
-line whilst smaller fonts need to pull back the margins of the page.
-Where users of the core `article` class have to manually figure out
-type areas (unless Latin or Computer Modern are used), users of KOMA-Script
-have the option to compute this automatically.
-
-KOMA-Script uses an algorithm to decide on the final page size. This involes
-the `DIV=x` setting, which is implemented in **komadown** via
-YAML metadata. The simplest use of `DIV` is to set it to `default`.
+Most of the settings for **KOMA-Script** are called using a metadata block
+called `KOMAoptions`, which takes items in the `element=value` form. 
+For instance, this document uses this option to switch headings to versions
+similar to the standard classes using
 ```yaml
 ---
-DIV: default
+KOMAoptions:
+  - headings=standardclasses
 ---
 ```
-This uses a predefined table based on the paper size to arrive at a type area
+The reader is referred to the **KOMA-script** manual for information on the many
+options available. Of special interest may be the `DIV` argument -- which we
+will talk about next.
+
+## Type area calculations
+
+One of the strengths of **KOMA-Script** is its facilities for intelligently 
+computing type-area layouts. The core \LaTeX\ classes work well out-of-the-box
+if the default font options (size, family, line spread) are used. However,
+if the user wants to forego Latin/Computer Modern for another font family 
+or simply change its size, these settings no longer fullfill their purpose
+of keeping the text at an adequate number of words per line.
+
+The core classes solution to this is to use the **geometry** package
+and modify the margins manually, but this might take several attempts to get
+right and moreover requires that the user knows to get the proportions right.
+
+**KOMA-Script** solves this automatically using an algorithm. This involes
+the `DIV=x` setting, which is implemented in **komadown** via
+the metadata block `classoption`. The simplest use of `DIV` is to set it to
+`default`.
+```yaml
+---
+classoption:
+  - DIV=calc
+---
+```
+This uses a predefined table based on the paper size and default font to arrive
+at a type area. 
 
 A more advanced use of `DIV` might be to set it to `calc`, in which case
 a `DIV` size is calculated based on the other options given KOMA-Script,
-such as `BCOR` (binding correction). `calc` also computes `DIV` based on the
-current font settings, but because the calculations are performed
-before any font packages area actually loaded, it does not make sense to set
-`DIV` for this reason. A better choice is to give the option
-`recalctypearea: yes` in the metadata of the R markdown document, in which
-case a macro will be called to compute the `DIV` settings after font packages
-have been loaded.
+such as `BCOR` (binding correction). `calc` also bases its calculations on the
+current font settings, but because the calculations are performed at the
+time when the document class is loaded and hence
+*before* any font packages are included, it does not make sense to set
+`DIV` for this reason alone. To get around this, one can use the
+`KOMAoptions` block. `KOMAoptions` are called after font packages are loaded,
+and hence if the user specifies `DIV=last` (if `DIV=calc` was set in
+`classoption`) or `DIV=calc` here, it will successfully adapt the type area.
 
 ## Headers and footers
 
@@ -131,18 +168,17 @@ Headers and footers can be specified via the following syntax.
 ---
 header:
   - pos: r
-    first: ""
-    next: "KOMA-script articles with komadown"
+    first: "scrartcl"
+    next: "komadown"
 footers:
   - pos: l
-    first: ""
-    next: 
+    next: "\today"
 ---
 ```
 `pos` gives alignment of the header---one of `r`, `l`, and `c` for right, left,
 and center respectively. `first` is the text for the header or footer on the
-first page and `next` for the latter pages. Note that *none* of these arguments
-may be omitted.
+first page and `next` for the latter pages. First and next are optional but
+pos is *not*.
 
 Additionally, the user can set
 ```yaml
@@ -155,19 +191,18 @@ the left spot of the header (which is the setting used in this vignette).
 
 ## Captions
 
-Captions can be customized using the following settings.
+Captions can be customized using the `caption` metadata block.
 ```yaml
 ---
 caption:
-  - format: plain
   - labelfont: bf
   - labelsep: period
   - font: small
 ---
 ```
-These should be self-explanatory; otherwise, the reader is referred to 
-the [documentation](http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/caption/caption-eng.pdf)
-for the caption package.
+The reader is referred to documentation for the 
+[caption package](http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/caption/caption-eng.pdf)
+to read about the various settings.
 
 The default settings (the ones above) produce captions with bold face for
 the label and a dot separator (Figure \@ref(fig:histogram)).
@@ -177,10 +212,15 @@ set.seed(1)
 hist(rnorm(10), col = "grey70", xlab = "", main = "")
 ```
 
+Additionally, we call the **floatrow** package to setup table floats to place
+their captions *above* the floats. Settings from this package are currently
+not configurable.
+
 # Cross-references
 
-Cross-references are made available in markdown syntax via **bookdown**. The
-basic syntax is `\@ref(label)`. `label` will differ depending on context.
+Cross-references are available in markdown syntax via the **bookdown**
+package. The basic syntax is `\@ref(label)` where `label` will differ depending
+on context:
 
 Figures
 :    `label` will be `fig:id` where `id` is the label given the chunk
@@ -204,18 +244,25 @@ for a description of the various prefixes.
 
 # Font packages
 
-**komadown** includes a couple of collections of fonts. All are based on the
-tremendous \LaTeX package [newtx](https://www.ctan.org/pkg/newtx) from Michael
-Sharpe. They are accessed with the metadata option fontpack-x, x being one of
-the options below
+**komadown** includes a few font packs that consist of font combinations 
+(serif, sans-serif, and monospace). All are based on the
+tremendous \LaTeX\ package [newtx](https://www.ctan.org/pkg/newtx) from Michael
+Sharpe. They are accessed with the metadata option `fontpack-x`, `x` being one
+of the options in Table \@ref(tab:fontpack).
 
-fontpack             serif              sans-serif     monospace
+Table: (\#tab:fontpack) Customized fontpackages
+
+Font pack            Serif              Sans-serif     Monospace
 ---------------      --------           ------------   ----------
-times (default)      Times New Roman    Helvetica      newtxtt
-erewhon              Erewhon (utopia)   Cabin          Inconsolata
 charter              XCharter (Charter) Cabin          Inconsolata
+erewhon              Erewhon (utopia)   Cabin          Inconsolata
 libertine            Libertine          Biolinum       Inconsolata
+times[^1]            Times New Roman    Helvetica      newtxtt
 
+
+[^1]: There is currently an issue using **authblk** (which **komadown**
+uses to set up title blocks) together with **newtxtext** that causes
+superscripts for the author footnotes to be malformed.
 
 Hence, to use the erewhon font pack, you would need to set the following.
 ```yaml
@@ -223,11 +270,69 @@ Hence, to use the erewhon font pack, you would need to set the following.
 fontpack-erewhon: yes
 ---
 ```
+If no font package is specified, the default is set to Latin Modern.
+
+# Font settings
+
+All of the font settings can be set or modified with the metadata blocks
+`addtokomafont` and `setkomafont`; the former modifies the current options --
+the latter resets them. Both use the subitems `element` and `commands`. 
+This document, for instance, using the following
+settings to modify description lists to use a roman font instead of the 
+**KOMA-Script** default of sans-serif.
+```
+---
+setkomafont:
+  - element: descriptionlabel
+    commands: \normalfont\scshape\bfseries
+---
+```
+As always, please refer to the **KOMA-Script** manual for a thorough 
+take on this.
 
 # Bibliography style
 
-The default bibliography style is the vancouver [@patrias_2007] style though
-any style may be used is a custom .csl style is supplied.
+The default bibliography style is the vancouver [@patrias_2007] style. It
+can be replaced with any `.csl` style using the usual **pandoc** interface.
+
+# Author blocks
+
+The komadown template includes scripting for author blocks as well; in fact,
+you *must* use the author blocks. The settings are somewhat involved compared
+to the usual author calls. 
+```yaml
+author:
+  - name: "Johan Larsson"
+affil:
+  - name: "Lund Unviversity"
+```
+`affil` is, of course, optional. We use the **authblk** package for this. If you
+have several authors you use the `id` tag to match authors to their
+affiliations.
+```yaml
+author:
+  - name: "Johan Larsson"
+    id: 1
+  - name: "John Doe"
+    id: 1
+affil:
+  - name: "Lund University"
+    id: 1
+```
+and the authors will link up with the affiliation.
+
+# Design choices
+
+I've attempted to leave most of the design choices at their default values,
+putting most of my personal preferences in the default template instead in
+order to make them easy to shake off. However, there are a few things
+that I have opted to modify. They are
+
+* table captions are always placed on top,
+* `number_sections` in the call to `rmarkdown::pdf_document()` is set to `TRUE`
+by default, and
+* the default bibliography style is set to the *Uniform Requirements* style 
+(also known as Vancouver).
 
 # This document
 
@@ -236,21 +341,29 @@ This document uses the following YAML metadata setup.
 ---
 title: "scrartcl"
 subtitle: "KOMA-script articles with komadown"
-author: "Johan Larsson"
+author:
+  - name: "Johan Larsson"
+    affil: "Lund University"
 date: "`r Sys.Date()`"
 automark: yes
 colorlinks: yes
-recalctypearea: yes
+fontpack-libertine: yes
+classoption:
+  - DIV=calc
+  - headsepline=true
 header:
   - pos: ro
-    first: ""
     next: komadown
 caption:
-  - format: plain
-  - labelfont: bf
-  - labelsep: period
-  - font: small
-bibliography: komadown.bib
+  - labelfont=bf
+  - labelsep=period
+  - font=small
+setkomafont:
+  - element: descriptionlabel
+    commands: \normalfont\scshape\bfseries
+KOMAoptions:
+  - headings=standardclasses
+  - DIV=last
 output: komadown::scrartcl
 ---
 ```
