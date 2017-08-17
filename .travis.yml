@@ -6,7 +6,7 @@ r_github_packages:
   - jimhester/covr
 
 before_install:
-  - tlmgr install tex-gyre fontaxes newtxtt sttools
+  - tlmgr install tex-gyre fontaxes newtxtt sttools authblk mweights libertine
 
 repos:
   CRAN: https://cran.rstudio.com/
