@@ -1,4 +1,4 @@
-# komadown 0.0.0.9000
+# komadown 0.0.1
 
-This is the first release of komadown.
+* This is the first release of komadown.
 

@@ -27,7 +27,7 @@ R Markdown output format to pass to \code{\link[rmarkdown:render]{rmarkdown::ren
 }
 \description{
 This is an interface to the KOMA-Script class scrartcl that acts as an
-alternative to the article class in LaTeX. Most of added functionality
+alternative to the article class in LaTeX. Most of the added functionality
 is documented in the \emph{scrartcl} vignette
 (\code{vignette("scrartcl", "komadown")}) and is accessed via the YAML metadata
 block of the R Markdown file.
