@@ -13,3 +13,10 @@
 ## Reverse dependencies
 
 This is a new release, so there are no reverse dependencies.
+
+## Resubmission
+This is a resubmission. In this version I have
+
+* removed the LICENSE file and
+* added single quotations to software and packages in the title and
+description (in the DESCRIPTION file).
