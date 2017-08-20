@@ -14,9 +14,14 @@
 
 This is a new release, so there are no reverse dependencies.
 
-## Resubmission
-This is a resubmission. In this version I have
+## Resubmissions
+There have been two resubmissions. In the first I have
 
 * removed the LICENSE file and
 * added single quotations to software and packages in the title and
 description (in the DESCRIPTION file).
+
+In the second resubmission i have
+
+* removed `dontrun` from the example in scrartcl.Rd and
+* changed version name from 0.0.1 to 0.1.0.
