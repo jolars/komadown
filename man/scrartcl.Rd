@@ -34,9 +34,8 @@ block of the R Markdown file.
 }
 \examples{
 
-\dontrun{
 library(rmarkdown)
 library(bookdown)
-draft("MyArticle.Rmd", template = "scrartcl", package = "komadown")
-}
+draft("MyArticle.Rmd", template = "scrartcl", package = "komadown",
+      edit = FALSE)
 }

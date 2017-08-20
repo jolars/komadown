@@ -12,11 +12,10 @@
 #' @return R Markdown output format to pass to [rmarkdown::render()].
 #' @examples
 #'
-#' \dontrun{
 #' library(rmarkdown)
 #' library(bookdown)
-#' draft("MyArticle.Rmd", template = "scrartcl", package = "komadown")
-#' }
+#' draft("MyArticle.Rmd", template = "scrartcl", package = "komadown",
+#'       edit = FALSE)
 #' @export
 scrartcl <- function(...,
                      number_sections = TRUE,
