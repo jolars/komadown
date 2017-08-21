@@ -6,4 +6,5 @@
 ^codecov\.yml$
 ^appveyor\.yml$
 ^cran-comments\.md$
-^C:\Users\johan\Documents\GitHub\komadown\docs$
+^\docs$
+^LICENSE$
