@@ -30,6 +30,12 @@ cross-referencing of figures, sections. theorems, and equations.
 
 You can install komadown from github with
 
+```{r cran-installation, eval = FALSE}
+install.packages("komadown")
+```
+
+or install the latest development version from github with
+
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("jolars/komadown")
