@@ -12,7 +12,7 @@ install:
 
 environment:
   global:
-    R_BUILD_ARGS: "--compact-vignettes=both""
+    R_BUILD_ARGS: "--compact-vignettes=both"
 
 cache:
   - C:\RLibrary
