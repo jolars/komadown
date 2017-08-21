@@ -1,6 +1,6 @@
 Package: komadown
 Title: R Markdown Templates for the 'KOMA-Script' Classes
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R:
   person("Johan", "Larsson", email = "johanlarsson@outlook.com",
          role = c("aut", "cre"))
