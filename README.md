@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/jolars/komadown.svg?branch=master)](https://travis-ci.org/jolars/komadown) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jolars/komadown?branch=master&svg=true)](https://ci.appveyor.com/project/jolars/komadown)
+[![Travis-CI Build Status](https://travis-ci.org/jolars/komadown.svg?branch=master)](https://travis-ci.org/jolars/komadown) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jolars/komadown?branch=master&svg=true)](https://ci.appveyor.com/project/jolars/komadown) [![CRAN status](http://www.r-pkg.org/badges/version/komadown)](https://cran.r-project.org/package=komadown) [![codecov](https://codecov.io/gh/jolars/komadown/branch/master/graph/badge.svg)](https://codecov.io/gh/jolars/komadown)
 
 komadown
 ========
