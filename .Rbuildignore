@@ -6,5 +6,5 @@
 ^codecov\.yml$
 ^appveyor\.yml$
 ^cran-comments\.md$
-^\docs$
+^docs$
 ^LICENSE$
