@@ -28,7 +28,7 @@ cross-referencing of figures, sections. theorems, and equations.
 
 ## Installation
 
-You can install komadown from github with
+You can install komadown from CRAN with
 
 ```{r cran-installation, eval = FALSE}
 install.packages("komadown")

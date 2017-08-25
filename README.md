@@ -12,7 +12,7 @@ It wraps around [bookdown](https://github.com/rstudio/bookdown) to enable cross-
 Installation
 ------------
 
-You can install komadown from github with
+You can install komadown from CRAN with
 
 ``` r
 install.packages("komadown")
