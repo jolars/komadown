@@ -6,7 +6,7 @@ r_github_packages:
   - jimhester/covr
 
 before_install:
-  - tlmgr install fontaxes sttools preprint mweights libertine mathalfa
+  - tlmgr install fontaxes sttools mweights libertine mathalfa
 
 r_build_args: --compact-vignettes=both
 
