@@ -38,7 +38,7 @@ $endif$
 $if(fontsize)$
   $fontsize$,
 $endif$
-  $for(classoption)$$classoption$$sep$,$endfor$%
+$for(classoption)$$classoption$$sep$,$endfor$%
 ]{scrartcl}
 
 \usepackage{ifxetex,ifluatex}
@@ -223,13 +223,19 @@ $endif$
 \fnbelowfloat % puts footnotes below the bottom floats
 \floatsetup[table]{capposition=top}
 
-$if(biblatex)$
-\usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
-$if(biblatexoptions)$
-\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$}
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
+$if(biblatex)$
+\usepackage[
+$if(biblio-style)$
+  style=$biblio-style$,
+$endif$
+$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$%
+]{biblatex}
 $for(bibliography)$
-\addbibresource{$bibliography$}
+\addbibresource{$bibliography$.bib}
 $endfor$
 $endif$
 
