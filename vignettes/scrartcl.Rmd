@@ -257,12 +257,7 @@ Font pack            Serif              Sans-serif     Monospace
 charter              XCharter (Charter) Cabin          Inconsolata
 erewhon              Erewhon (utopia)   Cabin          Inconsolata
 libertine            Libertine          Biolinum       Inconsolata
-times[^1]            Times New Roman    Helvetica      newtxtt
-
-
-[^1]: There is currently an issue using **authblk** (which **komadown**
-uses to set up title blocks) together with **newtxtext** that causes
-superscripts for the author footnotes to be malformed.
+times                Times New Roman    Helvetica      newtxtt
 
 Hence, to use the erewhon font pack, you would need to set the following.
 ```yaml
