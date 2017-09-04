@@ -28,4 +28,6 @@ devtools::install_github("jolars/komadown")
 License
 -------
 
-See the [license](LICENSE).
+-   **komadown** is licensed under [GPL-3](LICENSE)
+-   The *Vancouver (brackets)* style is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+-   Copied and modified code from [rticles]() is licensed under [GPL-3](LICENSE).
