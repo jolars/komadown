@@ -87,18 +87,12 @@ $if(fontpack-libertine)$
 \usepackage{bm}
 \useosf
 $else$
-$if(fontpack-times)$
-% times + helvetica
+% times + helvetica (default)
 \usepackage[osf]{newtxtext}
 \usepackage{newtxtt}
 \usepackage{textcomp}
 \usepackage[vvarbb,varg]{newtxmath}
 \usepackage{bm}
-$else$
-\usepackage{textcomp}
-\usepackage{amssymb,amsmath}
-\usepackage{lmodern}
-$endif$
 $endif$
 $endif$
 $endif$

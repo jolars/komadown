@@ -254,10 +254,10 @@ Table: (\#tab:fontpack) Customized fontpackages
 
 Font pack            Serif              Sans-serif     Monospace
 ---------------      --------           ------------   ----------
+times (default)      Times New Roman    Helvetica      newtxtt
 charter              XCharter (Charter) Cabin          Inconsolata
 erewhon              Erewhon (utopia)   Cabin          Inconsolata
 libertine            Libertine          Biolinum       Inconsolata
-times                Times New Roman    Helvetica      newtxtt
 
 Hence, to use the erewhon font pack, you would need to set the following.
 ```yaml
