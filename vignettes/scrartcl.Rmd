@@ -244,8 +244,8 @@ for a description of the various prefixes.
 
 # Font packages
 
-**komadown** includes a few font packs that consist of font combinations 
-(serif, sans-serif, and monospace). All are based on the
+**komadown** includes a few font packs of selected combinations of
+serif, sans-serif, and monospace fonts. All are based on the
 tremendous \LaTeX\ package [newtx](https://www.ctan.org/pkg/newtx) from Michael
 Sharpe. They are accessed with the metadata option `fontpack-x`, `x` being one
 of the options in Table \@ref(tab:fontpack).
