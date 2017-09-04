@@ -287,8 +287,11 @@ take on this.
 
 # Bibliography style
 
-The default bibliography style is the vancouver [@patrias_2007] style. It
-can be replaced with any `.csl` style using the usual **pandoc** interface.
+The default bibliography style is the *Vancouver Style* [@patrias_2007], which
+has been authored by Michael Berkowitz and been included in the package
+(licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+It can be replaced with any `.csl` style using the usual **pandoc** interface or
+any configuration via ``biblatex`` or ``natbib`.
 
 # Author blocks
 
