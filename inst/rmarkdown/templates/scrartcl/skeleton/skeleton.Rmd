@@ -30,11 +30,15 @@ output: komadown::scrartcl
 ```{r, include = FALSE}
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
+# Fix subfigs for rmarkdown -> latex
+if (identical(knitr:::pandoc_to(), 'latex'))
+  knitr::knit_hooks$set(plot = knitr::hook_plot_tex)
+
 knitr::opts_chunk$set(
   echo = FALSE,
   dev = "pdf",
   dev.args = list(pointsize = 8),
-  crop = FALSE
+  crop = NULL
 )
 
 options(digits = 3)
