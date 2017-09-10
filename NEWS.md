@@ -1,7 +1,8 @@
 # komadown 0.1.0.9000
 
 ## Minor changes
-* Use `amssymb` and `amsmath` if no fontpackage or fontfamily was specified.
+* `amsmath` was replaced by/extended with the `mathtools` packages.
+* Use `amssymb` and `mathtools` fontpackage or fontfamily was specified.
 * Times `newtxtext` was once again made the default font package after the 
 compatibility issue with KOMA-Script and footnotes was
 (fixed in newtx 1.526)[https://www.ctan.org/tex-archive/fonts/newtx].
