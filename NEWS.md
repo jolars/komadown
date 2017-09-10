@@ -4,7 +4,7 @@
 * The `.Rmd` skeleton now includes a hook by default that enables subfigures
 via the **subfig** package for LaTeX.
 * `amsmath` was replaced by/extended with the `mathtools` packages.
-* Use `amssymb` and `mathtools` fontpackage or fontfamily was specified.
+* Use `amssymb` and `mathtools` when no fontpackage or fontfamily was specified.
 * Times `newtxtext` was once again made the default font package after the 
 compatibility issue with KOMA-Script and footnotes was
 (fixed in newtx 1.526)[https://www.ctan.org/tex-archive/fonts/newtx].
