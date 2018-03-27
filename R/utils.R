@@ -30,7 +30,7 @@ pdf_document_format <- function(..., format, template, csl) {
   # add csl to pandoc_args
   fmt$pandoc$args <- c(fmt$pandoc$args,
                        "--csl",
-                       rmarkdown::pandoc_path_arg(find_resource(format, csl)))
+                       rmarkdown::pandoc_path_arg(csl))
   # return format
   fmt
 }

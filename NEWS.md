@@ -10,6 +10,7 @@ specified.
 * Times `newtxtext` was once again made the default font package after the 
 compatibility issue with KOMA-Script and footnotes was
 (fixed in newtx 1.526)[https://www.ctan.org/tex-archive/fonts/newtx].
+* Allow custom `.csl` bibliography styles (see #2).
 
 ## Bug fixes
 * Properly setup **natbib** if required.

@@ -5,7 +5,8 @@
 \title{Rmarkdown Template for koma-scrartcl}
 \usage{
 scrartcl(..., number_sections = TRUE,
-  md_extensions = c("-autolink_bare_uris"))
+  md_extensions = c("-autolink_bare_uris"),
+  csl = find_resource("vancouver-brackets.csl"))
 }
 \arguments{
 \item{\dots}{Arguments to}
@@ -21,6 +22,8 @@ section headers in this case.}
 specific output format function. For a function \code{foo2()}, its
 arguments are passed to \code{foo()}, e.g. \code{...} of
 \code{html_document2()} are passed to \code{rmarkdown::html_document()}.}
+
+\item{csl}{bibliography style in the \code{.csl} format}
 }
 \value{
 R Markdown output format to pass to \code{\link[rmarkdown:render]{rmarkdown::render()}}.
