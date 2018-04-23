@@ -1,12 +1,13 @@
 Package: komadown
 Title: R Markdown Templates for the 'KOMA-Script' Classes
-Version: 0.1.0.9000
+Version: 0.2.0
 Authors@R:
   person("Johan", "Larsson", email = "johanlarsson@outlook.com",
-         role = c("aut", "cre"))
+         role = c("aut", "cre"),
+         comment = c(ORCID = "0000-0002-4029-5945"))
 Description: R Markdown templates based on the 'KOMA-Script' classes for
   LaTeX, additionally offering cross-referencing via the 'bookdown' package.
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
 Imports:
