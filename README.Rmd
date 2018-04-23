@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -46,4 +46,4 @@ devtools::install_github("jolars/komadown")
 * **komadown** is licensed under [GPL-3](LICENSE)
 * The *Vancouver (brackets)* style is licensed under
 [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
-* Copied and modified code from [rticles]() is licensed under [GPL-3](LICENSE).
+* Copied and modified code from **rticles** is licensed under [GPL-3](LICENSE).
