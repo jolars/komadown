@@ -9,7 +9,7 @@ scrartcl(..., number_sections = TRUE,
   "vancouver-brackets.csl"))
 }
 \arguments{
-\item{\dots}{Arguments to}
+\item{...}{Arguments passed down to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}}}
 
 \item{number_sections}{Whether to number section headers: if \code{TRUE},
 figure/table numbers will be of the form \code{X.i}, where \code{X} is the

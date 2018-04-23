@@ -7,7 +7,7 @@
 #' block of the R Markdown file.
 #'
 #' @inheritParams bookdown::pdf_document2
-#' @param \dots Arguments to
+#' @param ... Arguments passed down to [bookdown::pdf_document2()]
 #' @param csl bibliography style in the `.csl` format
 #'
 #' @return R Markdown output format to pass to [rmarkdown::render()].
