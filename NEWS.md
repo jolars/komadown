@@ -1,4 +1,4 @@
-# komadown 0.1.0.9000
+# komadown 0.2.0
 
 ## Minor changes
 * Added option `margin=1em` to the **subfig** LaTeX package in template.
