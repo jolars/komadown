@@ -7,7 +7,7 @@ Authors@R:
          comment = c(ORCID = "0000-0002-4029-5945"))
 Description: R Markdown templates based on the 'KOMA-Script' classes for
   LaTeX, additionally offering cross-referencing via the 'bookdown' package.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8
 Imports:
