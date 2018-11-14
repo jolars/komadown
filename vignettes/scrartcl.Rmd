@@ -29,6 +29,9 @@ vignette: >
   %\VignetteIndexEntry{KOMA-script articles with komadown}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+pkgdown:
+  as_is: true
+  extension: pdf
 ---
 
 ```{r, include = FALSE}
