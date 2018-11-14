@@ -5,8 +5,8 @@
 \title{Rmarkdown Template for koma-scrartcl}
 \usage{
 scrartcl(..., number_sections = TRUE,
-  md_extensions = c("-autolink_bare_uris"), csl = find_resource("scrartcl",
-  "vancouver-brackets.csl"))
+  md_extensions = c("-autolink_bare_uris"),
+  csl = find_resource("scrartcl", "vancouver-brackets.csl"))
 }
 \arguments{
 \item{...}{Arguments passed down to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2()}}}

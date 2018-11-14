@@ -14,7 +14,7 @@ Imports:
   bookdown,
   rmarkdown
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/jolars/komadown
 BugReports: https://github.com/jolars/komadown/issues

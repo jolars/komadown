@@ -7,7 +7,7 @@
 \title{komadown: R Markdown Templates for the 'KOMA-Script' Classes}
 \description{
 R Markdown templates based on the 'KOMA-Script' classes for
-LaTeX, additionally offering cross-referencing via the 'bookdown' package.
+  LaTeX, additionally offering cross-referencing via the 'bookdown' package.
 }
 \seealso{
 Useful links:
