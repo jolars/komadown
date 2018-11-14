@@ -65,7 +65,7 @@ that the design of \LaTeX\ documents have been wrought with care
 and should only be meddled with if one knows what
 they are doing.
 
-This, coincidently, is the case with the
+This, coincidentally, is the case with the
 [KOMA-Script bundle](https://komascript.de/), which is a 
 reimagining of the original \LaTeX\ classes article, book, letter, and book.
 In many ways, the KOMA-Script classes are incontrovertible upgrades to the

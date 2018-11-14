@@ -1,5 +1,9 @@
 # komadown 0.2.0.9000
 
+## Bug fixes
+
+* Spelling errors were corrected in scrartcl vignette.
+
 # komadown 0.2.0
 
 ## Minor changes
