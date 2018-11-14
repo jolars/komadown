@@ -19,7 +19,9 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/jolars/komadown
 BugReports: https://github.com/jolars/komadown/issues
 Suggests:
-  testthat,
-  covr,
-  knitr
+    testthat,
+    covr,
+    knitr,
+    spelling
 VignetteBuilder: knitr
+Language: en-US
