@@ -130,7 +130,7 @@ $$
 used. If they are, the citations are placed in a two-column full-width
 environment. This is specified in the YAML markdown like this:
 
-```{yaml, eval = FALSE}
+```{r, eval = FALSE}
 ---
 output: 
   komadown::komatufte:
