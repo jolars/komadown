@@ -2,11 +2,21 @@ Package: komadown
 Title: R Markdown Templates for the 'KOMA-Script' Classes
 Version: 0.2.0.9000
 Authors@R:
-  person("Johan", "Larsson", email = "mail@larssonjohan.com",
-         role = c("aut", "cre"),
-         comment = c(ORCID = "0000-0002-4029-5945"))
-Description: R Markdown templates based on the 'KOMA-Script' classes for
-  LaTeX, additionally offering cross-referencing via the 'bookdown' package.
+  c(person("Johan", "Larsson", email = "mail@larssonjohan.com",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4029-5945")),
+    person("Johan", "MacFarlane", 
+           role = "cph",
+           comment = c("Pandoc templates")),
+    person("JJ", "Allaire", 
+           role = "cph",
+           comment = c("Code bits from rticles")))
+Description: R Markdown templates based on the 'KOMA-Script'
+  LaTeX suite, utilizing cross-referencing via the 'bookdown' package.
+  Two templates are featured: one which serves as a basic interface
+  to the 'scrartcl' LaTeX document class and one that utilizes
+  a custom template to produce documents crafted in the
+  style popularized by Edward Tufte.
 Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8
@@ -16,7 +26,7 @@ Imports:
 LazyData: true
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/jolars/komadown
+URL: https://github.com/jolars/komadown, https://jolars.github.io/komadown/
 BugReports: https://github.com/jolars/komadown/issues
 Suggests:
     testthat,
