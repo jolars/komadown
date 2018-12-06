@@ -128,7 +128,8 @@ $$
 
 **komatufte** is at its best when **natbib** or **biblatex** is
 used. If they are, the citations are placed in a two-column full-width
-environment. This is specified in the YAML markdown like this:
+environment. This is specified in the YAML markdown like this^[This
+document is built with `citation_package: natbib`]:
 
 ```{r, eval = FALSE}
 ---
@@ -141,8 +142,10 @@ output:
 If the default engine, *pandoc-citeproc*, is used instead, the
 bibliography will simply be appended after a regular section
 titled *References* and will therefore end up in the 
-main column.^[There is a pandoc filter, [pandoc-citeproc-preamble](https://github.com/spwhitton/pandoc-citeproc-preamble) that
-seems like a perfect solution to this problem, but I have yet to figure out how
+main column.^[There is a pandoc filter, 
+[pandoc-citeproc-preamble](https://github.com/spwhitton/pandoc-citeproc-preamble) 
+that seems like a perfect solution to this problem, but I have
+yet to figure out how
 to incorporate its Haskell script into this R package.]
 
 # References
