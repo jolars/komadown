@@ -11,7 +11,7 @@ affil:
 date: "`r Sys.Date()`"
 output: 
   komadown::komatufte:
-    citation_package: biblatex
+    citation_package: natbib
 bibliography: komadown.bib
 automark: yes
 vignette: >
