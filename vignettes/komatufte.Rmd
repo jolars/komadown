@@ -124,6 +124,60 @@ $$
 \right\}.
 $$
 
+# Algorithms
+
+Algorithms are supported, provided that they are
+composed using the syntax from the
+[algorithmicx](https://www.ctan.org/pkg/algorithmicx) package.
+Here is an example (\autoref{alg:algorithm}).
+
+\begin{algorithm}
+  \caption{This is an algorithm.\label{alg:algorithm}}
+  \begin{algorithmic}
+    \Require $n \geq 0$
+    \Ensure $y = x^n$
+    \State $y \Leftarrow 1$
+    \State $X \Leftarrow x$
+    \State $N \Leftarrow n$
+    \While{$N \neq 0$}
+      \If{$N$ is even}
+        \State $X \Leftarrow X \times X$
+        \State $N \Leftarrow \frac{N}{2}$ \Comment{Hello}
+      \ElsIf{$N$ is odd}
+        \State $y \Leftarrow y \times X$
+        \State $N \Leftarrow N - 1$
+      \EndIf
+    \EndWhile
+  \end{algorithmic}
+\end{algorithm}
+
+The code that generated this is provided next^[Notice the 
+placement of the label *inside* the caption. This is
+necessary to make cross-referencing work.].
+
+```{tikz, eval = FALSE}
+\begin{algorithm}
+  \caption{This is an algorithm.\label{alg:algorithm}}
+  \begin{algorithmic}
+    \Require $n \geq 0$
+    \Ensure $y = x^n$
+    \State $y \Leftarrow 1$
+    \State $X \Leftarrow x$
+    \State $N \Leftarrow n$
+    \While{$N \neq 0$}
+      \If{$N$ is even}
+        \State $X \Leftarrow X \times X$
+        \State $N \Leftarrow \frac{N}{2}$ \Comment{Hello}
+      \ElsIf{$N$ is odd}
+        \State $y \Leftarrow y \times X$
+        \State $N \Leftarrow N - 1$
+      \EndIf
+    \EndWhile
+  \end{algorithmic}
+\end{algorithm}
+```
+
+
 # Citations and bibliography
 
 **komatufte** is at its best when **natbib** or **biblatex** is
