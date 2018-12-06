@@ -1,0 +1,150 @@
+---
+title: "komatufte"
+subtitle: "KOMA-script articles inspired by Tufte"
+author:
+  - name: "Johan Larsson"
+    thanks: "mail@larssonjohan.com"
+    id: 1
+affil:
+  - name: "Lund University, Department of Statistics"
+    id: 1
+date: "`r Sys.Date()`"
+output: 
+  komadown::komatufte:
+    citation_package: biblatex
+bibliography: komadown.bib
+automark: yes
+vignette: >
+  %\VignetteIndexEntry{KOMA-script articles inspired by Tufte}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+pkgdown:
+  as_is: true
+  extension: pdf
+---
+
+```{r, include = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
+# Fix subfigs for rmarkdown -> latex
+if (identical(knitr:::pandoc_to(), 'latex'))
+  knitr::knit_hooks$set(plot = knitr::hook_plot_tex)
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  dev = "pdf",
+  dev.args = list(pointsize = 8),
+  crop = TRUE,
+  fig.width = 5,
+  fig.height = 3
+)
+
+knitr::opts_knit$set(width = 50)
+
+options(digits = 3)
+```
+
+# Inspired by Edward Tufte
+
+This style has been inspired by the popular document style of Edward
+Tufte, which is used throughout his many excellent texts on
+data visualization. The distinguishing feature of this style is its
+division into a left-aligned main column and a wide margin on the right
+into which text, figures, tables, and more can be arranged.
+
+Unlike the
+**tufte** package [@xie2018], however, **komadown** takes a bit of 
+freedom with this design.^[Instead of italic roman
+headings, for instance, we have opted for bold sans-serif such. We have also
+decided for a classical approach to references, using a bibliography
+at the end of the text.] Unlike the **scrartcl** style that is
+also featured in this package, this template takes a much more 
+opinionated approach to the design. There are fewer options for
+customization^[It is not, however, unlikely that this will change
+in the future.]
+
+# Figures
+
+## Default figure environment
+
+**komatufte** features three different figure environments.
+The default figure environment has the figure 
+positioned in the main column and figure caption in the margin.
+\autoref{fig:figure}, taken from Paul Murrels excellent *R Graphics* 
+[@murrell2011], showcases the default
+behavior of figures in this template.
+
+```{r figure, fig.cap = "Perspective plot of volcano data set.", fig.width = 6, fig.height = 5}
+z <- 2 * volcano
+x <- 10 * 1:nrow(z)
+y <- 10 * 1:ncol(z)
+
+trans <- persp(x, y, z, zlim = c(0, max(z)), 
+               theta = 150, phi = 12, lwd = 0.5,
+               scale = FALSE, axes = FALSE)
+
+f <- Map(function(i) lines(trans3d(i$x, i$y, 0, trans)),
+         contourLines(x, y, z))
+```
+
+## Margin figures
+
+There is also the option to put figures, including caption,
+altogether into the margin. This environment is invoked by
+specifying `fig.env = "marginfigure"` as a chunk option. This
+environment is examplified in \autoref{fig:marginfigure}.
+
+```{r marginfigure, fig.cap = "Survival on the Titanic.", fig.env = "marginfigure", fig.width = 2.5, fig.height = 3}
+mosaicplot(Survived ~ Sex + Age, data = Titanic, shade = TRUE,
+           main = "")
+```
+
+## Wide figures
+
+The last figure environment is *widefigure*, enabled by
+setting `fig.env = "widefiure".`
+
+```{r widefigure, fig.env = "widefigure", fig.width = 7, fig.height = 2, fig.cap = "Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8$ $m^3$."}
+plot(Nile, ylab = "Flow", xlab = "", col = "steelblue4")
+```
+
+# Math
+
+Math is typeset using the **newtxmath** package by Michael Sharpe. Note that
+the **mathtools** package is also loaded to make available some extra
+functionality if needed.
+
+In the following example, we show the objective function for
+the elastic net-penalized version of least-squares regression. 
+$$
+\min_{\beta_0, \beta}
+\left\{
+  \frac{1}{n} \sum_{i=1}^n \left(y_i -\beta_0 - \beta^\intercal \mathbf{x}_i \right)^2
+  + \lambda \left[(1 - \alpha)||\beta||_2^2 + \alpha||\beta||_1 \right]
+\right\}.
+$$
+
+# Citations and bibliography
+
+**komatufte** is at its best when **natbib** or **biblatex** is
+used. If they are, the citations are placed in a two-column full-width
+environment. This is specified in the YAML markdown like this:
+
+```{yaml, eval = FALSE}
+---
+output: 
+  komadown::komatufte:
+    citation_package: biblatex
+---
+```
+
+If the default engine, *pandoc-citeproc*, is used instead, the
+bibliography will simply be appended after a regular section
+titled *References* and will therefore end up in the 
+main column.^[There is a pandoc filter, [pandoc-citeproc-preamble](https://github.com/spwhitton/pandoc-citeproc-preamble) that
+seems like a perfect solution to this problem, but I have yet to figure out how
+to incorporate its Haskell script into this R package.]
+
+# References
+
+

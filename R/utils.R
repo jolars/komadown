@@ -23,14 +23,32 @@ inherit_pdf_document <- function(...) {
   fmt
 }
 
-pdf_document_format <- function(..., format, template, csl) {
+pdf_document_format <- function(...,
+                                format,
+                                template,
+                                csl = NULL,
+                                colorlinks = TRUE)
+{
   # base format
-  fmt <- inherit_pdf_document(..., template = find_resource(format, template))
+  fmt <- inherit_pdf_document(...,
+                              template = find_resource(format, template))
 
   # add csl to pandoc_args
-  fmt$pandoc$args <- c(fmt$pandoc$args,
-                       "--csl",
-                       rmarkdown::pandoc_path_arg(csl))
+  if (!is.null(csl)) {
+    fmt$pandoc$args <- c(fmt$pandoc$args,
+                         "--csl",
+                         rmarkdown::pandoc_path_arg(csl))
+  }
+
+  if (isTRUE(colorlinks)) {
+    fmt$pandoc$args <- c(fmt$pandoc$args, "--variable", "colorlinks=yes")
+  }
+
+  # # use pandoc-citeproc-preamble to add stuff before bibliography
+  # fmt$pandoc$args <- c(fmt$pandoc$args,
+  #                      "--filter pandoc-citeproc-preamble -M citeproc-preamble=",
+  #                      rmarkdown::pandoc_path_arg("citeproc-preamble.tex"))
   # return format
+
   fmt
 }

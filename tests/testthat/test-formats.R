@@ -39,3 +39,4 @@ test_format <- function(name, os_skip = NULL) {
 }
 
 test_format("scrartcl")
+test_format("komatufte")

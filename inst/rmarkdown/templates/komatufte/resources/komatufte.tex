@@ -1,0 +1,650 @@
+% This template has been adapted from https://github.com/jgm/pandoc-templates
+% that comes attached with the following copyright notice. It also includes
+% segments from the R Markdown template that in turn is based on the pandoc
+% template.
+%
+% Copyright (c) 2014--2017, John MacFarlane
+%
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions are met:
+%
+% * Redistributions of source code must retain the above copyright notice,
+%   this list of conditions and the following disclaimer.
+% * Redistributions in binary form must reproduce the above copyright notice,
+%   this list of conditions and the following disclaimer in the documentation
+%   and/or other materials provided with the distribution.
+% * Neither the name of John MacFarlane nor the names of other contributors may
+%   be used to endorse or promote products derived from this software without
+%   specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+% AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+% IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+% ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+% LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+% CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+% SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+% INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+% CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+% ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+% POSSIBILITY OF SUCH DAMAGE.
+
+\PassOptionsToPackage{unicode=true$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+$endif$$if(dir)$$if(latex-dir-rtl)$
+\PassOptionsToPackage{RTLdocument}{bidi}
+$endif$$endif$%
+\PassOptionsToPackage{font=small,
+                      labelfont=bf,
+                      labelsep=period,
+                      justification=RaggedRight,
+                      format=plain,
+                      singlelinecheck=off}{caption}
+
+\documentclass[%
+numbers=noendperiod,
+parskip=half,
+bibliography=totoc,
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$for(classoption)$$classoption$$sep$,$endfor$,
+]{scrartcl}
+
+\usepackage{multicol}
+
+% Margin paragraph
+\usepackage{marginfix}
+%\usepackage{morefloats} % More than 18 floats
+
+\usepackage[font=footnotesize]{subcaption}
+\usepackage{booktabs}
+\usepackage[document]{ragged2e}
+\usepackage[shortlabels]{enumitem}
+\usepackage[noend]{algpseudocode}
+\usepackage{etoolbox}
+\usepackage{floatrow}
+\usepackage{environ}
+\usepackage{xspace}
+
+\usepackage{ifxetex,ifluatex}
+
+$if(linestretch)$
+\usepackage{setspace}
+\setstretch{$linestretch$}
+$endif$
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % provides euro and other symbols
+
+$if(fontfamily)$
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$else$
+\usepackage{amsthm}
+$if(fontpack-erewhon)$
+% erewhon + cabin
+\usepackage[p,osf,scaled=.98,space]{erewhon}
+\usepackage{textcomp}
+\usepackage[varqu,varl]{inconsolata}
+\usepackage[type1,scaled=.95]{cabin}
+\usepackage[utopia,vvarbb]{newtxmath}
+\usepackage{bm}
+$else$
+$if(fontpack-charter)$
+% charter + cabin
+\usepackage[scaled=.98,sups,osf]{XCharter}
+\usepackage{textcomp}
+\usepackage[scaled=1.04,varqu,varl]{inconsolata}
+\usepackage[type1]{cabin}
+\usepackage{mathtools}
+\usepackage[charter,vvarbb,scaled=1.07]{newtxmath}
+\usepackage[cal=boondoxo]{mathalfa}
+\usepackage{bm}
+\linespread{1.04}
+$else$
+$if(fontpack-times)$
+% times + helvetica
+\usepackage[osf]{newtxtext}
+\usepackage{newtxtt}
+\usepackage{textcomp}
+\usepackage{mathtools}
+\usepackage[vvarbb,varg]{newtxmath}
+\usepackage{bm}
+$else$
+% libertinus
+\usepackage{libertine}
+\usepackage{textcomp}
+\usepackage[scaled=0.96,varqu,varl]{inconsolata}
+\usepackage{mathtools}
+\usepackage[libertine,libaltvw,liby,vvarbb]{newtxmath}
+%\usepackage{libertinust1math}
+\usepackage[scr=rsfso]{mathalfa}
+\usepackage{bm}
+\useosf
+$endif$
+$endif$
+$endif$
+$endif$
+
+\else % if luatex or xelatex
+$if(mathspec)$
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{unicode-math}
+  \fi
+$else$
+  \usepackage{unicode-math}
+$endif$
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+$for(fontfamilies)$
+  \newfontfamily{$fontfamilies.name$}[$fontfamilies.options$]{$fontfamilies.font$}
+$endfor$
+$if(mainfont)$
+    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(romanfont)$
+	\setromanfont[$for(romanfontoptions)$$romanfontoptions$$sep$,$endfor$]{$romanfont$}
+$endif$
+$if(sansfont)$
+    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+$endif$
+$if(mathfont)$
+$if(mathspec)$
+  \ifxetex
+    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \else
+    \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \fi
+$else$
+  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+$endif$
+$if(CJKmainfont)$
+  \ifxetex
+    \usepackage{xeCJK}
+    \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+  \fi
+$endif$
+$if(luatexjapresetoptions)$
+  \ifluatex
+    \usepackage[$for(luatexjapresetoptions)$$luatexjapresetoptions$$sep$,$endfor$]{luatexja-preset}
+  \fi
+$endif$
+$if(CJKmainfont)$
+  \ifluatex
+    \usepackage[$for(luatexjafontspecoptions)$$luatexjafontspecoptions$$sep$,$endfor$]{luatexja-fontspec}
+    \setmainjfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+  \fi
+$endif$
+\fi
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+$if(indent)$
+$else$
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(colorlinks)$
+\usepackage{xcolor}
+$endif$
+\usepackage{hyperref}
+\hypersetup{
+$if(title-meta)$
+            pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+            pdfauthor={$author-meta$},
+$endif$
+$if(keywords)$
+            pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+            colorlinks=true,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$PineGreen$endif$,
+            filecolor=$if(filecolor)$$filecolor$$else$PineGreen$endif$,
+            citecolor=$if(citecolor)$$citecolor$$else$Periwinkle$endif$,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$NavyBlue$endif$,
+$else$
+            pdfborder={0 0 0},
+$endif$
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+
+% Set tufte-like page layout
+\usepackage[
+  $for(geometry)$
+    $geometry$$sep$,
+  $endfor$
+  a4paper,
+  left=23mm,
+  top=27.4mm,
+  bottom=27.4mm,
+  textwidth=107mm,
+  marginparsep=8mm,
+  marginparwidth=49mm]{geometry}
+
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(tables)$
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+$endif$
+
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(subparagraph)$
+$else$
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+$endif$
+$if(pagestyle)$
+\pagestyle{$pagestyle$}
+$endif$
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(lang)$
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+$if(babel-newcommands)$
+  $babel-newcommands$
+$endif$
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+$for(polyglossia-otherlangs)$
+  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+$endfor$
+\fi
+$endif$
+$if(dir)$
+\ifxetex
+  % load bidi as late as possible as it modifies e.g. graphicx
+  \usepackage{bidi}
+\fi
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \TeXXeTstate=1
+  \newcommand{\RL}[1]{\beginR #1\endR}
+  \newcommand{\LR}[1]{\beginL #1\endL}
+  \newenvironment{RTL}{\beginR}{\endR}
+  \newenvironment{LTR}{\beginL}{\endL}
+\fi
+$endif$
+$if(natbib)$
+\usepackage[$natbiboptions$]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+\renewcommand{\bibpreamble}{\begin{multicols}{2}\small}
+\renewcommand{\bibpostamble}{\end{multicols}}
+$endif$
+$if(biblatex)$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+
+% Block margins for caption around figure and table environments
+\BeforeBeginEnvironment{figure}{\blockmargin}
+\AfterEndEnvironment{figure}{\unblockmargin}
+\BeforeBeginEnvironment{widefigure}{\blockmargin}
+\AfterEndEnvironment{widefigure}{\unblockmargin}
+\BeforeBeginEnvironment{table}{\blockmargin}
+\AfterEndEnvironment{table}{\unblockmargin}
+
+% Floats
+\DeclareNewFloatType{algorithm}{fileext=alg, name=Algorithm}
+\DeclareNewFloatType{widefigure}{fileext=wfig, name=Figure}
+\DeclareFloatSeparators{marginparsep}{\hskip\marginparsep}
+\floatsetup[figure]{margins=hangright,
+                    capposition=beside,
+                    capbesidesep=marginparsep,
+                    capbesideposition={top,right},
+                    floatwidth=\textwidth}
+\floatsetup[table]{margins=hangright,
+                   capposition=beside,
+                   capbesidesep=marginparsep,
+                   capbesideposition={top,right},
+                   floatwidth=\textwidth}
+\floatsetup[widefigure]{margins=hangright,
+                        capposition=bottom}
+\floatsetup[widetable]{margins=hangright,
+                       capposition=top}
+\floatsetup[algorithm]{margins=hangright,
+                       capposition=beside,
+                       capbesidesep=marginparsep,
+                       capbesideposition={top,right},
+                       floatwidth=\textwidth}
+\captionsetup[subfigure]{position=b,justification=RaggedRight}
+\captionsetup[sub]{justification=RaggedRight}
+
+% Provide marginfigure
+\NewEnviron{marginfigure}{%
+  \marginpar{%
+    \captionsetup{type=figure}
+    \BODY
+  }%
+}
+
+% Extended verbatim environments
+\usepackage{fancyvrb}
+\fvset{fontsize=\small}% default font size for fancy-verbatim environments
+
+% Provide fullwidth environment
+\newlength{\overhang}
+\setlength{\overhang}{\marginparwidth}
+\addtolength{\overhang}{\marginparsep}
+
+\newenvironment{fullwidth}{%
+  \blockmargin
+  \begin{addmargin*}[0em]{-\overhang}%
+}{%
+  \end{addmargin*}%
+  \unblockmargin
+}
+
+% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+
+% Subfigs
+%\usepackage[margin=1em]{subfig}
+
+% Authors
+\usepackage[noblocks]{authblk}
+\renewcommand\Affilfont{$if(affilfont)$$affilfont$$else$\normalfont\itshape\small$endif$}
+\renewcommand\Authfont{$if(authfont)$$authfont$$endif$}
+
+$for(author)$
+\author[$author.id$]{$author.name$$if(author.thanks)$\thanks{$author.thanks$}$endif$}
+$endfor$
+
+$for(affil)$
+\affil[$affil.id$]{$affil.name$}
+$endfor$
+
+$if(date)$
+\date{$date$}
+$endif$
+
+% Headers and footers
+\usepackage[headsepline=false,
+            $if(automark)$
+            automark,
+            $endif$
+            headwidth=textwithmarginpar,
+            footwidth=head]{scrlayer-scrpage}
+
+\pagestyle{scrheadings}
+
+$if(automark)$
+\automark[subsection]{section}
+% \clearmainofpairofpagestyles
+$endif$
+
+\clearpairofpagestyles
+\rofoot[\pagemark]{\pagemark}
+\lohead{\headmark}
+
+$for(header)$
+\$header.pos$head[$header.first$]{$header.next$}
+$endfor$
+
+$for(footer)$
+\$footer.pos$foot[$footer.first$]{$footer.next$}
+$endfor$
+
+% New, custom title
+\usepackage{titling}
+\setlength{\droptitle}{-5em}
+\pretitle{\begin{flushleft}\huge\bfseries\sffamily}
+\posttitle{
+  $if(subtitle)$
+  \\\smallskip\normalfont\itshape\large $subtitle$
+  $endif$
+  \end{flushleft}
+}
+\preauthor{\begin{flushleft}\Large\scshape}
+\postauthor{\end{flushleft}\normalfont}
+\predate{\begin{flushleft}\large\itshape}
+\postdate{\end{flushleft}}
+
+% Captions
+\usepackage[font=footnotesize]{subcaption}
+%\captionsetup[sub]{font = footnotesize}
+
+$if(appendix)$
+\usepackage[header,page]{appendix}
+$endif$
+
+% Text justification and parskip
+\usepackage[document]{ragged2e}
+
+% Lists
+\usepackage[shortlabels]{enumitem}
+
+% Algorithms
+$if(algorithms)$
+\usepackage[vlined]{algorithm2e}
+$endif$
+
+% Caption styles (caption package is loaded with sidenotes)
+\DeclareCaptionStyle{sidecaption}{labelfont=bf,labelsep=period,font=small}
+\DeclareCaptionStyle{marginfigure}{labelfont=bf,labelsep=period,font=small}
+\DeclareCaptionStyle{margintable}{labelfont=bf,labelsep=period,font=small}
+\DeclareCaptionStyle{widefigure}{labelfont=bf,labelsep=period,font=small}
+\DeclareCaptionStyle{widetable}{labelfont=bf,labelsep=period,font=small}
+
+% Redefine footnotes to be marginnotes
+\newcounter{snmark}
+\setcounter{snmark}{0}
+
+\newcommand*{\makesidenotemark}{\/\textsuperscript{\thesnmark}}
+
+\renewcommand{\footnote}[1]{%
+  \refstepcounter{snmark}%
+  \makesidenotemark{}%
+  \marginpar{\RaggedRight\small\textsuperscript{\thesnmark}\,#1}%
+}
+
+% Put thanks in marginpar
+\renewcommand{\thanks}[1]{%
+  \footnotemark%
+  \marginpar{\RaggedRight\small\textsuperscript{\thefootnotemark}\,#1}%
+}
+
+% $if(fontpack-libertine)$
+% Libertine in tabular
+\makeatletter
+\AtBeginDocument{\def\libertine@figurealign{}\libertineOsF}
+\makeatother
+\makeatletter
+\newcommand\libertineTabular{\def\libertine@figurealign{T}\libertineLF}
+\makeatother
+
+
+% $endif$
+
+% KOMA font options
+$for(setkomafont)$
+\setkomafont{$setkomafont.element$}{$setkomafont.commands$}
+$endfor$
+
+$for(addtokomafont)$
+\addtokomafont{$addtokomafont.element$}{$addtokomafont.commands$}
+$endfor$
+
+% KOMA options
+$for(KOMAoptions)$
+\KOMAoptions{$KOMAoptions$}
+$endfor$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+$if(lot)$
+\listoftables
+$endif$
+
+$if(lof)$
+\listoffigures
+$endif$
+
+$body$
+
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\begin{fullwidth}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+\end{fullwidth}
+$endif$
+$endif$
+$if(biblatex)$
+\begin{fullwidth}
+  \begin{multicols}{2}[\printbibheading]
+    \renewcommand{\bibfont}{\small}
+    \printbibliography[heading=none$if(biblio-title)$, title=$biblio-title$$endif$]
+  \end{multicols}
+\end{fullwidth}
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

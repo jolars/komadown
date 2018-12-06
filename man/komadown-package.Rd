@@ -6,19 +6,30 @@
 \alias{komadown-package}
 \title{komadown: R Markdown Templates for the 'KOMA-Script' Classes}
 \description{
-R Markdown templates based on the 'KOMA-Script' classes for
-  LaTeX, additionally offering cross-referencing via the 'bookdown' package.
+R Markdown templates based on the 'KOMA-Script'
+  LaTeX suite, utilizing cross-referencing via the 'bookdown' package.
+  Two templates are featured: one which serves as a basic interface
+  to the 'scrartcl' LaTeX document class and one that utilizes
+  a custom template to produce documents crafted in the
+  style popularized by Edward Tufte.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/jolars/komadown}
+  \item \url{https://jolars.github.io/komadown/}
   \item Report bugs at \url{https://github.com/jolars/komadown/issues}
 }
 
 }
 \author{
 \strong{Maintainer}: Johan Larsson \email{mail@larssonjohan.com} (0000-0002-4029-5945)
+
+Other contributors:
+\itemize{
+  \item Johan MacFarlane (Pandoc templates) [copyright holder]
+  \item JJ Allaire (Code bits from rticles) [copyright holder]
+}
 
 }
 \keyword{internal}
