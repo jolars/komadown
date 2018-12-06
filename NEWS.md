@@ -1,8 +1,14 @@
 # komadown 0.2.0.9000
 
+## New features
+* `komatufte()` is a new R Markdown template
+that uses a custom template designed to produce
+Tufte-like pdf documents. A new vignette has been
+added that showcases this.
+
 ## Bug fixes
 
-* Spelling errors were corrected in scrartcl vignette.
+* Spelling errors were corrected in the scrartcl vignette.
 
 # komadown 0.2.0
 
