@@ -68,7 +68,6 @@ $for(classoption)$$classoption$$sep$,$endfor$,
 \usepackage{booktabs}
 \usepackage[document]{ragged2e}
 \usepackage[shortlabels]{enumitem}
-\usepackage[noend]{algpseudocode}
 \usepackage{etoolbox}
 \usepackage{floatrow}
 \usepackage{environ}
@@ -83,60 +82,20 @@ $endif$
 
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
 
+% Fonts
+
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp} % provides euro and other symbols
-
-$if(fontfamily)$
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
-$else$
 \usepackage{amsthm}
-$if(fontpack-erewhon)$
-% erewhon + cabin
-\usepackage[p,osf,scaled=.98,space]{erewhon}
-\usepackage{textcomp}
-\usepackage[varqu,varl]{inconsolata}
-\usepackage[type1,scaled=.95]{cabin}
-\usepackage[utopia,vvarbb]{newtxmath}
-\usepackage{bm}
-$else$
-$if(fontpack-charter)$
-% charter + cabin
-\usepackage[scaled=.98,sups,osf]{XCharter}
-\usepackage{textcomp}
-\usepackage[scaled=1.04,varqu,varl]{inconsolata}
-\usepackage[type1]{cabin}
-\usepackage{mathtools}
-\usepackage[charter,vvarbb,scaled=1.07]{newtxmath}
-\usepackage[cal=boondoxo]{mathalfa}
-\usepackage{bm}
-\linespread{1.04}
-$else$
-$if(fontpack-times)$
-% times + helvetica
-\usepackage[osf]{newtxtext}
-\usepackage{newtxtt}
-\usepackage{textcomp}
-\usepackage{mathtools}
-\usepackage[vvarbb,varg]{newtxmath}
-\usepackage{bm}
-$else$
-% libertinus
 \usepackage{libertine}
 \usepackage{textcomp}
 \usepackage[scaled=0.96,varqu,varl]{inconsolata}
 \usepackage{mathtools}
 \usepackage[libertine,libaltvw,liby,vvarbb]{newtxmath}
-%\usepackage{libertinust1math}
-\usepackage[scr=rsfso]{mathalfa}
-\usepackage{bm}
+\IfFileExists{mathalfa.sty}{\usepackage[scr=rsfso]{mathalfa}}{}
+\IfFileExists{bm.sty}{\usepackage{bm}}{}
 \useosf
-$endif$
-$endif$
-$endif$
-$endif$
 
 \else % if luatex or xelatex
 $if(mathspec)$
@@ -373,8 +332,20 @@ $endif$
 \BeforeBeginEnvironment{table}{\blockmargin}
 \AfterEndEnvironment{table}{\unblockmargin}
 
-% Floats
+% Algorithms
+\IfFileExists{algpseudocode.sty}{%
+\usepackage[noend]{algpseudocode}
 \DeclareNewFloatType{algorithm}{fileext=alg, name=Algorithm}
+\floatsetup[algorithm]{margins=hangright,
+                       capposition=beside,
+                       capbesidesep=marginparsep,
+                       capbesideposition={top,right},
+                       floatwidth=\textwidth}%
+\BeforeBeginEnvironment{algorithm}{\blockmargin}
+\AfterEndEnvironment{algorithm}{\unblockmargin}
+}{}
+
+% Floats
 \DeclareNewFloatType{widefigure}{fileext=wfig, name=Figure}
 \DeclareFloatSeparators{marginparsep}{\hskip\marginparsep}
 \floatsetup[figure]{margins=hangright,
@@ -391,11 +362,6 @@ $endif$
                         capposition=bottom}
 \floatsetup[widetable]{margins=hangright,
                        capposition=top}
-\floatsetup[algorithm]{margins=hangright,
-                       capposition=beside,
-                       capbesidesep=marginparsep,
-                       capbesideposition={top,right},
-                       floatwidth=\textwidth}
 \captionsetup[subfigure]{position=b,justification=RaggedRight}
 \captionsetup[sub]{justification=RaggedRight}
 
@@ -522,11 +488,6 @@ $endif$
 % Lists
 \usepackage[shortlabels]{enumitem}
 
-% Algorithms
-$if(algorithms)$
-\usepackage[vlined]{algorithm2e}
-$endif$
-
 % Caption styles (caption package is loaded with sidenotes)
 \DeclareCaptionStyle{sidecaption}{labelfont=bf,labelsep=period,font=small}
 \DeclareCaptionStyle{marginfigure}{labelfont=bf,labelsep=period,font=small}
@@ -552,7 +513,6 @@ $endif$
   \marginpar{\RaggedRight\small\textsuperscript{\thefootnotemark}\,#1}%
 }
 
-% $if(fontpack-libertine)$
 % Libertine in tabular
 \makeatletter
 \AtBeginDocument{\def\libertine@figurealign{}\libertineOsF}
@@ -560,9 +520,6 @@ $endif$
 \makeatletter
 \newcommand\libertineTabular{\def\libertine@figurealign{T}\libertineLF}
 \makeatother
-
-
-% $endif$
 
 % KOMA font options
 $for(setkomafont)$
