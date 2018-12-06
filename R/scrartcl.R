@@ -21,7 +21,8 @@
 scrartcl <- function(...,
                      number_sections = TRUE,
                      md_extensions = c("-autolink_bare_uris"),
-                     csl = find_resource("scrartcl", "vancouver-brackets.csl")){
+                     csl = NULL)
+{
   pdf_document_format(
     ...,
     number_sections = number_sections,
