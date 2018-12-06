@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rmarkdown Template for koma-scrartcl — scrartcl • komadown</title>
+<title>Rmarkdown Template for koma-scrartcl — komatufte • komadown</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,17 @@
 
 
 
-<meta property="og:title" content="Rmarkdown Template for koma-scrartcl — scrartcl" />
+<meta property="og:title" content="Rmarkdown Template for koma-scrartcl — komatufte" />
 
-<meta property="og:description" content="This is an interface to the KOMA-Script class scrartcl that acts as an
-alternative to the article class in LaTeX. Most of the added functionality
-is documented in the scrartcl vignette
-(vignette(&quot;scrartcl&quot;, &quot;komadown&quot;)) and is accessed via the YAML metadata
+<meta property="og:description" content="This template is a designed for pdf output and acts
+as an alternative to the tufte::tufte_handout()
+template. Whereas that Rmarkdown template is based on
+the tufte-latex
+LaTeX package, owever, komatufte is instead
+based on a custom template that I have designed using
+the KOMA-script scrartcl class. Most of the added functionality
+is documented in the komatufte vignette
+(vignette(&quot;komatufte&quot;, &quot;komadown&quot;)) and is accessed via the YAML metadata
 block of the R Markdown file." />
 <meta name="twitter:card" content="summary" />
 
@@ -122,29 +127,35 @@ block of the R Markdown file." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Rmarkdown Template for koma-scrartcl</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jolars/komadown/blob/master/R/scrartcl.R'><code>R/scrartcl.R</code></a></small>
-    <div class="hidden name"><code>scrartcl.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/jolars/komadown/blob/master/R/komatufte.R'><code>R/komatufte.R</code></a></small>
+    <div class="hidden name"><code>komatufte.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This is an interface to the KOMA-Script class scrartcl that acts as an
-alternative to the article class in LaTeX. Most of the added functionality
-is documented in the <em>scrartcl</em> vignette
-(<code><a href='../articles/scrartcl.html'>vignette("scrartcl", "komadown")</a></code>) and is accessed via the YAML metadata
+    <p>This template is a designed for pdf output and acts
+as an alternative to the <code><a href='https://www.rdocumentation.org/packages/tufte/topics/tufte_handout'>tufte::tufte_handout()</a></code>
+template. Whereas that Rmarkdown template is based on
+the <a href='https://www.ctan.org/pkg/tufte-latex'>tufte-latex</a>
+LaTeX package, owever, <strong>komatufte</strong> is instead
+based on a custom template that I have designed using
+the KOMA-script scrartcl class. Most of the added functionality
+is documented in the <em>komatufte</em> vignette
+(<code><a href='../articles/komatufte.html'>vignette("komatufte", "komadown")</a></code>) and is accessed via the YAML metadata
 block of the R Markdown file.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>scrartcl</span>(<span class='no'>...</span>, <span class='kw'>number_sections</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>md_extensions</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"-autolink_bare_uris"</span>), <span class='kw'>csl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>komatufte</span>(<span class='no'>...</span>, <span class='kw'>number_sections</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>md_extensions</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"-autolink_bare_uris"</span>), <span class='kw'>csl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>colorlinks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed down to <code><a href='https://www.rdocumentation.org/packages/bookdown/topics/html_document2'>bookdown::pdf_document2()</a></code></p></td>
+      <td><p>arguments passed down to <code><a href='https://www.rdocumentation.org/packages/bookdown/topics/html_document2'>bookdown::pdf_document2()</a></code></p></td>
     </tr>
     <tr>
       <th>number_sections</th>
@@ -166,19 +177,34 @@ arguments are passed to <code>foo()</code>, e.g. <code>...</code> of
       <th>csl</th>
       <td><p>bibliography style in the <code>.csl</code> format</p></td>
     </tr>
+    <tr>
+      <th>colorlinks</th>
+      <td><p>should cross-references and links be
+colored?</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>R Markdown output format to pass to <code><a href='https://www.rdocumentation.org/packages/rmarkdown/topics/render'>rmarkdown::render()</a></code>.</p>
+    <p>R Markdown output format to pass to <code><a href='https://www.rdocumentation.org/packages/rmarkdown/topics/render'>rmarkdown::render()</a></code></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The main features of this template is the use of a
+left-aligned column for the main content and a right-aligned
+column for marginal content.</p>
+<p>This template is more opinionated than <a href='scrartcl.html'>scrartcl</a>
+and is not catered to manual tinkering with the style.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>rmarkdown</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>bookdown</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/rmarkdown/topics/draft'>draft</a></span>(<span class='st'>"MyArticle.Rmd"</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='st'>"scrartcl"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"komadown"</span>,
-      <span class='kw'>edit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in draft("MyArticle.Rmd", template = "scrartcl", package = "komadown",     edit = FALSE): The template 'scrartcl' was not found in the komadown package</span></div></pre>
+<span class='kw pkg'>rmarkdown</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/rmarkdown/topics/draft'>draft</a></span>(<span class='st'>"my-article.Rmd"</span>,
+                 <span class='kw'>template</span> <span class='kw'>=</span> <span class='st'>"komatufte"</span>,
+                 <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"komadown"</span>,
+                 <span class='kw'>edit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rmarkdown::draft("my-article.Rmd", template = "komatufte", package = "komadown",     edit = FALSE): The template 'komatufte' was not found in the komadown package</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -186,6 +212,8 @@ arguments are passed to <code>foo()</code>, e.g. <code>...</code> of
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

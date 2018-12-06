@@ -1,6 +1,7 @@
-pandoc: '2.4'
-pkgdown: 1.1.0
+pandoc: '2.5'
+pkgdown: 1.2.0
 pkgdown_sha: ~
 articles:
+  komatufte: komatufte.html
   scrartcl: scrartcl.html
 
