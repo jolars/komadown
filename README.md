@@ -29,8 +29,8 @@ install.packages("komadown")
 or install the latest development version from github with
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jolars/komadown")
+# install.packages("remotes")
+remotes::install_github("jolars/komadown")
 ```
 
 ## License

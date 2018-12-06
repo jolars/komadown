@@ -37,8 +37,8 @@ install.packages("komadown")
 or install the latest development version from github with
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("jolars/komadown")
+# install.packages("remotes")
+remotes::install_github("jolars/komadown")
 ```
 
 ## License
@@ -46,4 +46,5 @@ devtools::install_github("jolars/komadown")
 * **komadown** is licensed under [GPL-3](LICENSE)
 * The *Vancouver (brackets)* style is licensed under
 [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
-* Copied and modified code from **rticles** is licensed under [GPL-3](LICENSE).
+* Copied and modified code from **rticles** is licensed
+under [GPL-3](LICENSE).
