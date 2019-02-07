@@ -43,6 +43,7 @@ $endif$$endif$%
                       labelsep=period,
                       justification=RaggedRight,
                       format=plain,
+                      tableposition=top,
                       singlelinecheck=off}{caption}
 
 \documentclass[%
@@ -88,7 +89,7 @@ $endif$
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp} % provides euro and other symbols
 \usepackage{amsthm}
-\usepackage{libertine}
+\usepackage{libertinus}
 \usepackage{textcomp}
 \usepackage[scaled=0.96,varqu,varl]{inconsolata}
 \usepackage{mathtools}
@@ -176,6 +177,7 @@ $if(colorlinks)$
 \usepackage{xcolor}
 $endif$
 \usepackage{hyperref}
+\usepackage{cleveref}
 \hypersetup{
 $if(title-meta)$
             pdftitle={$title-meta$},
@@ -331,6 +333,8 @@ $endif$
 \AfterEndEnvironment{widefigure}{\unblockmargin}
 \BeforeBeginEnvironment{table}{\blockmargin}
 \AfterEndEnvironment{table}{\unblockmargin}
+\BeforeBeginEnvironment{longtable}{\blockmargin}
+\AfterEndEnvironment{longtable}{\unblockmargin}
 
 % Algorithms
 \IfFileExists{algpseudocode.sty}{%
@@ -358,6 +362,11 @@ $endif$
                    capbesidesep=marginparsep,
                    capbesideposition={top,right},
                    floatwidth=\textwidth}
+\floatsetup[longtable]{margins=hangright,
+                       capposition=beside,
+                       capbesidesep=marginparsep,
+                       capbesideposition={top,right},
+                       floatwidth=\textwidth}
 \floatsetup[widefigure]{margins=hangright,
                         capposition=bottom}
 \floatsetup[widetable]{margins=hangright,
@@ -369,6 +378,14 @@ $endif$
 \NewEnviron{marginfigure}{%
   \marginpar{%
     \captionsetup{type=figure}
+    \BODY
+  }%
+}
+
+% Provide margintable
+\NewEnviron{margintable}{%
+  \marginpar{%
+    \captionsetup{type=table}
     \BODY
   }%
 }
@@ -491,7 +508,7 @@ $endif$
 % Caption styles (caption package is loaded with sidenotes)
 \DeclareCaptionStyle{sidecaption}{labelfont=bf,labelsep=period,font=small}
 \DeclareCaptionStyle{marginfigure}{labelfont=bf,labelsep=period,font=small}
-\DeclareCaptionStyle{margintable}{labelfont=bf,labelsep=period,font=small}
+\DeclareCaptionStyle{margintable}{labelfont=bf,labelsep=period,font=small,position=top}
 \DeclareCaptionStyle{widefigure}{labelfont=bf,labelsep=period,font=small}
 \DeclareCaptionStyle{widetable}{labelfont=bf,labelsep=period,font=small}
 
