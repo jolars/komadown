@@ -1,10 +1,9 @@
 ---
-title: "scrartcl"
-subtitle: "KOMA-script articles with komadown"
+title: "Title"
+subtitle: "Subtitle"
 author:
-  - name: "Johan Larsson"
+  - name: "Author"
 date: "`r Sys.Date()`"
-fontpack-libertine: yes
 output: komadown::komatufte
 ---
 
