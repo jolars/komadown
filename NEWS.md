@@ -9,6 +9,7 @@ added that showcases this.
 ## Bug fixes
 
 * Spelling errors were corrected in the scrartcl vignette.
+* The `number_sections` option is now honored once more (#3).
 
 # komadown 0.2.0
 
