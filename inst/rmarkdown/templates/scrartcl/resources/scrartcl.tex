@@ -31,14 +31,33 @@
 % ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 % POSSIBILITY OF SUCH DAMAGE.
 
-\documentclass[
+\PassOptionsToPackage{unicode=true$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+$endif$
+$if(dir)$
+$if(latex-dir-rtl)$
+\PassOptionsToPackage{RTLdocument}{bidi}
+$endif$
+$endif$
+%
+\documentclass[%
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(lang)$
+  $babel-lang$,
+$endif$
+numbers=noendperiod,
+bibliography=totoc,
 $if(papersize)$
   $papersize$paper,
 $endif$
 $if(fontsize)$
   $fontsize$,
 $endif$
-$for(classoption)$$classoption$$sep$,$endfor$%
+$for(classoption)$$classoption$$sep$,$endfor$,
 ]{scrartcl}
 
 \usepackage{ifxetex,ifluatex}
@@ -58,47 +77,18 @@ $if(fontfamily)$
 \usepackage{mathtools}
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
+$if(fontpack)$
 \usepackage{amsthm}
-$if(fontpack-erewhon)$
-% erewhon + cabin
-\usepackage[p,osf,scaled=.98,space]{erewhon}
-\usepackage{textcomp}
-\usepackage[varqu,varl]{inconsolata}
-\usepackage[type1,scaled=.95]{cabin}
-\usepackage[utopia,vvarbb]{newtxmath}
-\usepackage{bm}
-$else$
-$if(fontpack-charter)$
-% charter + cabin
-\usepackage[scaled=.98,sups,osf]{XCharter}
-\usepackage{textcomp}
-\usepackage[scaled=1.04,varqu,varl]{inconsolata}
-\usepackage[type1]{cabin}
-\usepackage{mathtools}
-\usepackage[charter,vvarbb,scaled=1.07]{newtxmath}
-\usepackage[cal=boondoxo]{mathalfa}
-\linespread{1.04}
-$else$
-$if(fontpack-libertine)$
-% libertine + biolinum
-\usepackage[lining]{libertine}
+\usepackage{libertinus}
 \usepackage{textcomp}
 \usepackage[scaled=0.96,varqu,varl]{inconsolata}
 \usepackage{mathtools}
-\usepackage[libertine,libaltvw,liby,vvarbb]{newtxmath}
-\usepackage[scr=rsfso]{mathalfa}
-\usepackage{bm}
+\usepackage[lcgreekalpha]{libertinust1math}
+\usepackage[scr=boondoxo]{mathalfa}
 \useosf
 $else$
-% times + helvetica (default)
-\usepackage[osf]{newtxtext}
-\usepackage{newtxtt}
-\usepackage{textcomp}
+\usepackage{amssymb}
 \usepackage{mathtools}
-\usepackage[vvarbb,varg]{newtxmath}
-\usepackage{bm}
-$endif$
-$endif$
 $endif$
 $endif$
 
@@ -166,9 +156,12 @@ $endif$
 }{}
 
 \usepackage{hyperref}
-$if(colorlinks)$
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
 $endif$
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   unicode=true,
 $if(title-meta)$
@@ -178,19 +171,40 @@ $if(author-meta)$
   pdfauthor={$author-meta$},
 $endif$
 $if(keywords)$
-  pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
 $endif$
 $if(colorlinks)$
   colorlinks=true,
   linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+  filecolor=$if(filecolor)$$filecolor$$else$Maroon$endif$,
   citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
   urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
 $else$
   pdfborder={0 0 0},
 $endif$
-  breaklinks=true
-}
-\urlstyle{same}
+  breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% Tables
+\usepackage{longtable,booktabs}
 
 % Language options (babel/polyglossia)
 $if(lang)$
@@ -214,12 +228,7 @@ $endif$
 
 % Captions
 \usepackage[$for(caption)$$caption$$sep$,$endfor$]{caption}
-
-% Floats
-\usepackage{floatrow}
-\usepackage{stfloats}
-\fnbelowfloat % puts footnotes below the bottom floats
-\floatsetup[table]{capposition=top}
+\captionsetup[longtable]{skip=1em}
 
 $if(natbib)$
 \usepackage{natbib}
@@ -237,25 +246,6 @@ $for(bibliography)$
 $endfor$
 $endif$
 
-$if(listings)$
-\usepackage{listings}
-$endif$
-
-$if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-$endif$
-
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
-
-\usepackage{longtable,booktabs}
-
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -268,13 +258,20 @@ $endif$
 
 $if(links-as-notes)$
 % Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
-
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-2}
 $endif$
 
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -314,6 +311,38 @@ $endif$
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+
+$if(fontpack)$
+% Libertine in tabular
+\makeatletter
+\AtBeginDocument{\def\libertine@figurealign{}\LibertinusSerifOsF}
+\makeatother
+\makeatletter
+\newcommand\libertineTabular{\def\libertine@figurealign{T}\LibertinusSerifTLF}
+\makeatother
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\libertineTabular}
+\AtBeginEnvironment{longtable}{\libertineTabular}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+$if(lang)$
+\ifnum 0\ifxetex 1\fi=0 % if pdftex or luatex
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+$if(babel-newcommands)$
+  $babel-newcommands$
+$endif$
+\else % if xetex
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+$for(polyglossia-otherlangs)$
+  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+$endfor$
+\fi
+$endif$
 
 % Use protect on footnotes to avoid problems with footnotes in titles
 \let\rmarkdownfootnote\footnote%
@@ -380,10 +409,6 @@ $for(KOMAoptions)$
 \KOMAoptions{$KOMAoptions$}
 $endfor$
 
-$for(header-includes)$
-$header-includes$
-$endfor$
-
 \begin{document}
 $if(title)$
 \maketitle
@@ -416,7 +441,6 @@ $if(lof)$
 $endif$
 
 $body$
-
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
@@ -426,14 +450,16 @@ $else$
 \renewcommand\refname{$biblio-title$}
 $endif$
 $endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
 $endif$
 $endif$
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
 $endif$
 $for(include-after)$
 $include-after$
-$endfor$
 
+$endfor$
 \end{document}
