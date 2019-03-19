@@ -6,7 +6,7 @@ author:
 date: "`r Sys.Date()`"
 automark: yes
 colorlinks: yes
-fontpack-libertine: yes
+fontpack: yes
 classoption:
   - DIV=calc
   - headsepline=true
@@ -45,6 +45,7 @@ knitr::opts_chunk$set(
   echo = FALSE,
   fig.width = 2.3,
   fig.height = 2.1,
+  fig.align = "center",
   dev = "pdf",
   dev.args = list(pointsize = 8),
   crop = TRUE
@@ -196,6 +197,23 @@ automark: yes
 which will then create a running header displaying the current section in
 the left spot of the header (which is the setting used in this vignette).
 
+## Tables
+
+There is a custom macro in place that ensures that ensures that
+figures in tables are formatted as tabular-lining. See Table 1.
+
+Fruit                      Price (\$)
+---------------------      ---------------
+Apple                      2.29
+Orange                     0.91
+
+Table: A table showcasing number formatting in tables.
+
+Compare this with the number format for the section figures, which
+are old style (non-proportional) figures. This behavior, however,
+relies specifically on the use of the `fontpack: true` option, since it
+involves macros related specifically to the **libertinus** package.
+
 ## Captions
 
 Captions can be customized using the `caption` metadata block.
@@ -218,10 +236,6 @@ the label and a dot separator (Figure \@ref(fig:histogram)).
 set.seed(1)
 hist(rnorm(10), col = "grey70", xlab = "", main = "")
 ```
-
-Additionally, we call the **floatrow** package to setup table floats to place
-their captions *above* the floats. Settings from this package are currently
-not configurable.
 
 # Cross-references
 
@@ -249,34 +263,25 @@ it by `\@ref(prefix:id)` where prefix depends on the type of theorem. See
 [this table](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#tab:theorem-envs)
 for a description of the various prefixes.
 
-# Font packages
+# Fonts
 
-**komadown** includes a few font packs of selected combinations of
-serif, sans-serif, and monospace fonts. All are based on the
-tremendous \LaTeX\ package [newtx](https://www.ctan.org/pkg/newtx) from Michael
-Sharpe. They are accessed with the metadata option `fontpack-x`, `x` being one
-of the options in Table \@ref(tab:fontpack).
-
-Table: (\#tab:fontpack) Customized fontpackages
-
-Font pack            Serif              Sans-serif     Monospace
----------------      --------           ------------   ----------
-times (default)      Times New Roman    Helvetica      newtxtt
-charter              XCharter (Charter) Cabin          Inconsolata
-erewhon              Erewhon (utopia)   Cabin          Inconsolata
-libertine            Libertine          Biolinum       Inconsolata
-
-Hence, to use the erewhon font pack, you would need to set the following.
-```yaml
----
-fontpack-erewhon: yes
----
+**komadown** uses a combination of libertinus and inconsolata
+by default. Currently, the pertinent font package block
+looks like this:
+```tex
+\usepackage{amsthm}
+\usepackage{libertinus}
+\usepackage{textcomp}
+\usepackage[scaled=0.96,varqu,varl]{inconsolata}
+\usepackage{mathtools}
+\usepackage[lcgreekalpha]{libertinust1math}
+\usepackage[scr=boondoxo]{mathalfa}
+\useosf
 ```
-If no font package is specified, the default is set to Latin Modern.
+The user is as usual free to choose whatever combination they
+wish by setting `fontfamily` in the YAML metadata.
 
-# Font settings
-
-All of the font settings can be set or modified with the metadata blocks
+All of the font settings can also be set or modified with the metadata blocks
 `addtokomafont` and `setkomafont`; the former modifies the current options --
 the latter resets them. Both use the subitems `element` and `commands`. 
 This document, for instance, using the following
@@ -291,6 +296,24 @@ setkomafont:
 ```
 As always, please refer to the **KOMA-Script** manual for a thorough 
 take on this.
+
+# Math
+
+Math is typeset using the **libertinust1math** package by Michael Sharpe. Note that
+the **mathtools** package is also loaded to make available some extra
+functionality if needed, as well as **mathalfa** and **bm** if they are available
+on the system.
+
+In the following example, we show the objective function for
+the elastic net-penalized version of least-squares regression. 
+$$
+\min_{\beta_0, \beta}
+\left\{
+  \frac{1}{n} \sum_{i=1}^n \left(y_i -\beta_0 - \bm\beta' \mathbf{x}_i \right)^2
+  + \lambda \left[(1 - \alpha)||\beta||_2^2 + \alpha||\beta||_1 \right]
+\right\}.
+$$
+
 
 # Bibliography style
 
