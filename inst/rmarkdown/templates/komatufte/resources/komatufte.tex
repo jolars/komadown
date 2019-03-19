@@ -87,14 +87,13 @@ $endif$
 
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{textcomp} % provides euro and other symbols
 \usepackage{amsthm}
-\usepackage{libertinus}
+\usepackage[lining]{libertine}
 \usepackage{textcomp}
 \usepackage[scaled=0.96,varqu,varl]{inconsolata}
 \usepackage{mathtools}
 \usepackage[libertine,libaltvw,liby,vvarbb]{newtxmath}
-\IfFileExists{mathalfa.sty}{\usepackage[scr=rsfso]{mathalfa}}{}
+\IfFileExists{mathalfa.sty}{\usepackage[scr=boondoxo]{mathalfa}}{}
 \IfFileExists{bm.sty}{\usepackage{bm}}{}
 \useosf
 
@@ -537,6 +536,9 @@ $endif$
 \makeatletter
 \newcommand\libertineTabular{\def\libertine@figurealign{T}\libertineLF}
 \makeatother
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\libertineTabular}
+\AtBeginEnvironment{longtable}{\libertineTabular}
 
 % KOMA font options
 $for(setkomafont)$
