@@ -1,30 +1,42 @@
 ---
-title: "scrartcl"
-subtitle: "KOMA-script articles with komadown"
+title: "Title"
+subtitle: "Subtitle"
 author:
-  - name: "Johan Larsson"
+  - name: "Author"
 date: "`r Sys.Date()`"
 automark: yes
 colorlinks: yes
-fontpack-libertine: yes
+toc: false
+numbersections: true
+fontpack: yes
 classoption:
-  - DIV=calc
   - headsepline=true
 header:
   - pos: ro
-    first: "Text on first page."
-    next: "Text on subsequent pages."
+    first: "Text on first page"
+    next: "Text on subsequent pages"
 caption:
   - labelfont=bf
   - labelsep=period
   - font=small
+  - tableposition=below
+  - belowskip=1ex
+geometry:
+  - hscale=0.6
+  - vscale=0.7
+  - vmarginratio=1:1,
+  - heightrounded
 setkomafont:
   - element: descriptionlabel
     commands: \normalfont\scshape\bfseries
 KOMAoptions:
   - headings=standardclasses
-  - DIV=last
-output: komadown::scrartcl
+output: 
+  komadown::scrartcl:
+    citation_package: "biblatex"
+header-includes:
+  - \usepackage[hscale=0.6,vscale=0.7,vmarginratio={2:2},heightrounded]{geometry}
+  - \let\mathbf\bm
 ---
 
 ```{r, include = FALSE}
@@ -45,3 +57,4 @@ options(digits = 3)
 ```
 
 # Introduction
+
