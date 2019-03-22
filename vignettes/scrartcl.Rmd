@@ -309,7 +309,7 @@ the elastic net-penalized version of least-squares regression.
 $$
 \min_{\beta_0, \beta}
 \left\{
-  \frac{1}{n} \sum_{i=1}^n \left(y_i -\beta_0 - \bm\beta' \mathbf{x}_i \right)^2
+  \frac{1}{n} \sum_{i=1}^n \left(y_i -\beta_0 - \mathbf{\beta}' \mathbf{x}_i \right)^2
   + \lambda \left[(1 - \alpha)||\beta||_2^2 + \alpha||\beta||_1 \right]
 \right\}.
 $$
