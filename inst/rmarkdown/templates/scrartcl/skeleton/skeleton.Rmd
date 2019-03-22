@@ -5,9 +5,6 @@ author:
   - name: "Author"
 date: "`r Sys.Date()`"
 automark: yes
-colorlinks: yes
-toc: false
-numbersections: true
 fontpack: yes
 classoption:
   - headsepline=true
@@ -21,22 +18,11 @@ caption:
   - font=small
   - tableposition=below
   - belowskip=1ex
-geometry:
-  - hscale=0.6
-  - vscale=0.7
-  - vmarginratio=1:1,
-  - heightrounded
 setkomafont:
   - element: descriptionlabel
     commands: \normalfont\scshape\bfseries
 KOMAoptions:
   - headings=standardclasses
-output: 
-  komadown::scrartcl:
-    citation_package: "biblatex"
-header-includes:
-  - \usepackage[hscale=0.6,vscale=0.7,vmarginratio={2:2},heightrounded]{geometry}
-  - \let\mathbf\bm
 ---
 
 ```{r, include = FALSE}
