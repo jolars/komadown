@@ -1,4 +1,4 @@
-add_package_checks()
+add_package_checks(build_args = c("--force", "--compact-vignettes=both"))
 
 if (Sys.getenv("id_rsa") != "" && !ci()$is_tag()) {
   # pkgdown documentation can be built optionally. Other example criteria:
@@ -12,3 +12,4 @@ if (Sys.getenv("id_rsa") != "" && !ci()$is_tag()) {
     add_step(step_build_pkgdown()) %>%
     add_step(step_push_deploy(path = "docs", branch = "gh-pages"))
 }
+
