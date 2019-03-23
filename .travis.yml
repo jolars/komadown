@@ -35,6 +35,11 @@ dist: trusty
 cache: packages
 r_build_args: --compact-vignettes=both
 
+addons:
+  apt:
+    packages:
+      - ghostscript
+
 #env
 env:
   global:
