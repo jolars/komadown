@@ -1,0 +1,56 @@
+---
+title: "Title"
+subtitle: "Subtitle"
+author:
+  - name: "Author"
+date: "`r Sys.Date()`"
+automark: yes
+fontpack: yes
+classoption:
+  - headsepline=true
+header:
+  - pos: ro
+    first: "Text on first page"
+    next: "Text on subsequent pages"
+caption:
+  - labelfont=bf
+  - labelsep=period
+  - font=small
+  - tableposition=below
+  - belowskip=1ex
+setkomafont:
+  - element: descriptionlabel
+    commands: \normalfont\scshape\bfseries
+KOMAoptions:
+  - headings=standardclasses
+  - DIV=last
+  - paper=A4
+  - titlepage=true
+  - titlepage=firstiscover
+output: komadown::scrbook
+---
+
+```{r, include = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
+# Fix subfigs for rmarkdown -> latex
+if (identical(knitr:::pandoc_to(), 'latex'))
+  knitr::knit_hooks$set(plot = knitr::hook_plot_tex)
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  dev = "pdf",
+  dev.args = list(pointsize = 8),
+  crop = NULL
+)
+
+options(digits = 3)
+```
+
+# Preface {-}
+Some forewords...
+
+# Introduction
+
+## A section
+
