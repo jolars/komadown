@@ -2,3 +2,4 @@
 
 export(komatufte)
 export(scrartcl)
+export(scrbook)
