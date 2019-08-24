@@ -377,15 +377,8 @@ $if(date)$
 $endif$
 
 % Headers and footers
-\usepackage{scrlayer-scrpage}
+\usepackage[$if(automark)$automark$endif$]{scrlayer-scrpage}
 \pagestyle{scrheadings}
-
-$if(automark)$
-\automark[subsection]{section}
-\clearmainofpairofpagestyles
-\lohead[]{\headmark}
-\cfoot[\pagemark]{\pagemark}
-$endif$
 
 $for(header)$
 \$header.pos$head[$header.first$]{$header.next$}
