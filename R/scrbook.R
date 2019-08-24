@@ -19,9 +19,9 @@
 #'       edit = FALSE)
 #' @export
 scrbook <- function(...,
-                     number_sections = TRUE,
-                     md_extensions = c("-autolink_bare_uris"),
-                     csl = NULL)
+                    number_sections = TRUE,
+                    md_extensions = c("-autolink_bare_uris"),
+                    csl = NULL)
 {
   pdf_document_format(
     ...,
